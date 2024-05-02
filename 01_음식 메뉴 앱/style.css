@@ -1,0 +1,147 @@
+html {
+  font-size: 10px;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
+}
+button {
+  all: unset;
+}
+li {
+  all: unset;
+}
+
+ul {
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-itmes: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* HEADER */
+
+.header {
+  /* background-color: yellowgreen; */
+  width: 100%;
+
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-itmes: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.header .title {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 4rem;
+}
+
+.header .filter-btn-list {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+
+  gap: 1rem;
+}
+
+.header .filter-btn {
+  padding: 1em;
+  min-width: 5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  border: 1.5px solid black;
+  font-size: 1.6rem;
+}
+
+.header .filter-btn:hover {
+  border: 1.5px solid gray;
+  color: gray;
+}
+
+.header .filter-btn.active {
+  font-weight: 900;
+}
+
+/* MAIN */
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 4rem;
+}
+
+.card {
+  width: 50%;
+  min-width: 50rem;
+}
+
+.card-title strong {
+  font-weight: 800;
+}
+
+.card-content {
+  display: flex;
+  font-size: 1.4rem;
+  height: 15rem;
+}
+
+.card-content .card-cover {
+  flex-shrink: 0;
+  width: 25rem;
+  height: 15rem;
+  border: 2px solid skyblue;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.card-content .card-text {
+  display: flex;
+
+  flex-direction: column;
+  padding: 2rem;
+
+  min-width: 20rem;
+}
+
+.card-content .card-text .card-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-title .price {
+  font-weight: 700;
+  color: royalblue;
+}
+
+.hr {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: black;
+}
+
+.card-text .card-info {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
