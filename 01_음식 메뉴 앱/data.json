@@ -1,0 +1,67 @@
+{
+  "foods": [
+    {
+      "name": "Banana Pancake",
+      "price": 3000,
+      "category": "Breakfast",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nisi ut dolorem omnis error possimus aperiam quisquam maxime maiores ratione quae fuga, cum quidem inventore adipisci nemo voluptas deserunt explicabo?",
+      "image": "banana_pancake.avif"
+    },
+    {
+      "name": "Cherry Pancake",
+      "price": 3000,
+      "category": "Breakfast",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nisi ut dolorem omnis error possimus aperiam quisquam maxime maiores ratione quae fuga, cum quidem inventore adipisci nemo voluptas deserunt explicabo?",
+      "image": "cherry_pancake.avif"
+    },
+    {
+      "name": "Chicken",
+      "price": 30000,
+      "category": "Dinner",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nisi",
+      "image": "chicken.avif"
+    },
+    {
+      "name": "Chocolate Shake",
+      "price": 30000,
+      "category": "Dinner",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nisi",
+      "image": "chocolate_shake.avif"
+    },
+    {
+      "name": "Egg Scramble",
+      "price": 4000,
+      "category": "Dinner",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nisi",
+      "image": "egg_scramble.avif"
+    },
+    {
+      "name": "Hamburger",
+      "price": 8000,
+      "category": "Lunch",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nisi",
+      "image": "hamburger.avif"
+    },
+    {
+      "name": "Mushroom Burger",
+      "price": 9500,
+      "category": "Lunch",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nisi ut dolorem omnis error possimus aperiam quisquam maxime maiores ratione quae fuga, cum quidem inventore adipisci nemo voluptas deserunt explicabo?",
+      "image": "mushroom_burger.avif"
+    },
+    {
+      "name": "Hot Chocolate",
+      "price": 6000,
+      "category": "Shakes",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nisiLorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nisi",
+      "image": "hot_choco.avif"
+    },
+    {
+      "name": "Mangoade",
+      "price": 7000,
+      "category": "Shakes",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nisi ut dolorem omnis error possimus aperiam quisquam maxime maiores ratione quae fuga, cum quidem inventore adipisci nemo voluptas deserunt explicabo?",
+      "image": "mangoade.avif"
+    }
+  ]
+}
