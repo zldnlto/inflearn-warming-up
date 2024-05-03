@@ -80,14 +80,17 @@ const addMenuItem = (content) => {
 };
 
 const handleFilterBtn = (e) => {
-  console.log("이벤트", e.target.id);
+  const targetCategory = e.target.id;
+  const activeBtn = document.querySelector(`#${targetCategory}`);
+  activeBtn.classList.add("active");
+
   let filteredData;
 
-  if (e.target.id === "All") {
+  if (targetCategory === "All") {
     filteredData = [...foodData];
   } else {
     filteredData = foodData.filter((data) => {
-      return data.category === e.target.id;
+      return data.category === targetCategory;
     });
   }
   const newChild = renderCard(filteredData);
