@@ -16,7 +16,6 @@ const fetchData = async () => {
 };
 
 const renderCard = (data) => {
-  console.log("들어오는거 체크", data);
   let newCard = "";
   if (data) {
     data.forEach((v) => {
@@ -45,16 +44,11 @@ const renderCard = (data) => {
   return newCard;
 };
 
-console.log("caches" in window);
-console.log(window.caches);
-
 let foodData;
 
-// 초기 데이터 페칭
 fetchData()
   .then((res) => {
-    console.log(res);
-    foodData = res; //foodData 할당
+    foodData = res;
     return res;
   })
   .then(() => {
@@ -102,7 +96,6 @@ MenuList.forEach((menuItem) => {
   addMenuItem(menuItem);
 
   const filterBtns = Array.from(document.querySelectorAll(".filter-btn"));
-  console.log("필터버튼", filterBtns);
   filterBtns.forEach((filterBtn) => {
     filterBtn.addEventListener("click", (e) => handleFilterBtn(e));
   });
