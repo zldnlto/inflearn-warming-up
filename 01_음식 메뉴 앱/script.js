@@ -46,19 +46,23 @@ const renderCard = (data) => {
 
 let foodData;
 
-fetchData()
-  .then((res) => {
-    foodData = res;
-    return res;
-  })
-  .then(() => {
-    const newChild = renderCard(foodData);
-    const cardList = document.querySelector(".cards");
-    cardList.innerHTML = newChild;
-  })
-  .catch((error) => {
-    console.error("data fetching error", error);
-  });
+const init = () => {
+  fetchData()
+    .then((res) => {
+      foodData = res;
+      return res;
+    })
+    .then(() => {
+      const newChild = renderCard(foodData);
+      const cardList = document.querySelector(".cards");
+      cardList.innerHTML = newChild;
+    })
+    .catch((error) => {
+      console.error("data fetching error", error);
+    });
+};
+
+init();
 
 const btnList = document.querySelector(".filter-btn-list");
 
