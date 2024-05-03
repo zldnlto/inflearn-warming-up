@@ -1,4 +1,10 @@
-const MenuList = ["All", "🍳 Breakfast", "🍔 Lunch", "🥤 Shakes", "🥘 Dinner"];
+const MenuList = [
+  { name: "All", id: "All" },
+  { name: "🍳 Breakfast", id: "Breakfast" },
+  { name: "🍔 Lunch", id: "Lunch" },
+  { name: "🥤 Shakes", id: "Shakes" },
+  { name: "🥘 Dinner", id: "Diner" },
+];
 
 const fetchData = async () => {
   const res = await fetch("./data.json");
@@ -18,16 +24,30 @@ const btnList = document.querySelector(".filter-btn-list");
 const addMenuItem = (content) => {
   const newElement = document.createElement("li");
   newElement.className = "filter-btn";
-  if (content) {
-    newElement.innerText = content;
+  newElement.id = content.id;
+  if (content.name) {
+    newElement.innerText = content.name;
   }
   btnList.appendChild(newElement);
   return newElement;
 };
 
+const handleFilterBtn = (e) => {
+  console.log("이벤트", e.target.id);
+  //filter 로직 구현
+};
+
 MenuList.forEach((menuItem) => {
   addMenuItem(menuItem);
+
+  const filterBtns = Array.from(document.querySelectorAll(".filter-btn"));
+  console.log("필터버튼", filterBtns);
+  filterBtns.forEach((filterBtn) => {
+    filterBtn.addEventListener("click", (e) => handleFilterBtn(e));
+  });
 });
+
+// 이렇게 돌 것 없이 MenuItem 생성할 때 이벤트 리스너 달면 되는 것 아닌가?
 
 fetchData()
   .then((res) => {
@@ -62,7 +82,6 @@ fetchData()
     return newChild;
   })
   .then((newChild) => {
-    console.log(newChild);
     const cardList = document.querySelector(".cards");
     cardList.innerHTML = newChild;
   })
