@@ -56,6 +56,11 @@ const init = () => {
       const newChild = renderCard(foodData);
       const cardList = document.querySelector(".cards");
       cardList.innerHTML = newChild;
+      return cardList;
+    })
+    .then(() => {
+      const allBtn = document.getElementById("All");
+      allBtn.classList.add("active");
     })
     .catch((error) => {
       console.error("data fetching error", error);
