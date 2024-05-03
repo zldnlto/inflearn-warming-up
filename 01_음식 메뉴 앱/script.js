@@ -78,6 +78,13 @@ const addMenuItem = (content) => {
 };
 
 const handleFilterBtn = (e) => {
+  const btns = Array.from(document.querySelectorAll(".filter-btn"));
+
+  btns.forEach((btn) => {
+    if (btn.classList.contains("active")) {
+      btn.classList.remove("active");
+    }
+  });
   const targetCategory = e.target.id;
   const activeBtn = document.querySelector(`#${targetCategory}`);
   activeBtn.classList.add("active");
