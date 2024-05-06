@@ -6,28 +6,28 @@
     <title>Rock,Scissors,Paper!</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body class="wrapper">
-    <header class="header">
-      <h1>가위바위보 ✌️✊✋</h1>
+  <body id="root">
+    <header id="header">
+      <h1 class="ir">가위바위보 게임 앱</h1>
       <img
         src="./assets/zzangkenman.webp"
         alt="가위바위보 머신 이미지"
         class="main-image"
       />
     </header>
-    <main>
-      <section class="score">
+    <main id="main">
+      <section id="score">
         <h2 class="ir">플레이어와 스코어</h2>
-        <div class="player">
-          <div>플레이어</div>
-          <span>0</span>
+        <div class="player user">
+          <span>플레이어</span>
+          <span class="score">0</span>
         </div>
-        <div class="player">
-          <div>컴퓨터</div>
-          <span>0</span>
+        <div class="player computer">
+          <span>컴퓨터</span>
+          <span class="score">0</span>
         </div>
       </section>
-      <section class="select">
+      <section id="select">
         <h2 class="ir">가위 바위 보 선택</h2>
         <span>선택하기</span>
         <div class="remaining">
@@ -41,7 +41,7 @@
           <button class="select-btn">보</button>
         </div>
       </section>
-      <section class="result">
+      <section id="result">
         <h2 class="ir">결과</h2>
         <div>컴퓨터 승리</div>
         <!-- <button class="restart-btn"><span>재도전</span></button> -->
