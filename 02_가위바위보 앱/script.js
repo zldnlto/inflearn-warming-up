@@ -152,6 +152,8 @@ handleRestartBtn = () => {
   REMAINING_POINT = 10;
 
   // 아쉬운 부분
+  userScore.innerText = USER_SCORE;
+  computerScore.innerText = COMPUTER_SCORE;
   resultText.style.display = "block";
   remainingBox.style.display = "block";
   rcpBtnBox.style.display = "block";
