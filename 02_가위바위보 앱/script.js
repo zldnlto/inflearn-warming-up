@@ -1,3 +1,10 @@
+let COMPUTER_SCORE = 0;
+let USER_SCORE = 0;
+let REMAINING_POINT = 10;
+
+let USER_PICK = 0;
+let COMPUTER_PICK = 0;
+
 const addElementWithId = (element, id) => {
   const newElement = document.createElement(element);
   newElement.id = id;
@@ -49,14 +56,14 @@ const userScoreBox = addElementWithClass("div", "player", "user");
 const userName = document.createElement("span");
 userName.innerText = "플레이어";
 const userScore = addElementWithClass("span", "score");
-userScore.innerText = 0; //임시
+userScore.innerText = USER_SCORE; //임시
 
 const computerScoreBox = addElementWithClass("div", "player", "computer");
 
 const computerName = document.createElement("span");
 computerName.innerText = "컴퓨터";
 const computerScore = addElementWithClass("span", "score");
-computerScore.innerText = 0; //임시
+computerScore.innerText = COMPUTER_SCORE; //임시
 
 // 고민 -> append 작업을 아래와 같이 따로 분리해야할지 구역별로 모아놓는게 좋을지  생성 / 붙이기 작업 분리 아니면 section별로 분리?
 
@@ -83,7 +90,7 @@ const remainigText = document.createElement("span");
 remainigText.innerText = `남은 횟수 : `;
 
 const remainigPoint = document.createElement("span");
-remainigPoint.innerText = 10;
+remainigPoint.innerText = REMAINING_POINT;
 
 const rcpBtnBox = addElementWithClass("div", "rcp-btns");
 
@@ -122,10 +129,34 @@ restartBtnText.innerText = "재도전";
 restartBtn.appendChild(restartBtnText);
 
 resultSection.appendChild(resultHeading);
-// resultSection.appendChild(resultText);
-// resultSection.appendChild(restartBtn);
 
-// const userScore = scoreSection.querySelector(".user");
-// const computerScore = scoreSection.querySelector(".computer");
+const choices = ["rock", "scissors", "paper"];
+const resultMatric = [
+  [0, -1, 1], // rock
+  [1, 0, -1], // scissors
+  [-1, 1, 0], // paper
+];
 
-// console.log(userScore, computerScore);
+// 컴퓨터 가위바위보 랜덤생성
+
+const generateComputerPick = () => {
+  return Math.floor(Math.random() * 3); // 0,1,2
+};
+
+// 버튼 클릭에 따라 USER에게서 0~2 입력 받기 0:묵 1:찌 2: 빠
+
+const calculateResult = (USER_PICK, COMPUTER_PICK) => {
+  const result = resultMatric[USER_PICK][COMPUTER_PICK];
+  if (result > 0) {
+    USER_SCORE += 1;
+  } else if (result < 0) {
+    COMPUTER_SCORE += 1;
+  }
+  return;
+};
+
+// 유저 기준으로 Matrix 점수 획득, 컴퓨터는 반대로
+
+// 가위바위보 점수표 만들고 비교 ?
+// 점수 처리
+// 남은 횟수 0회 되면 결과 출력
