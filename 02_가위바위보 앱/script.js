@@ -121,7 +121,7 @@ const resultHeading = addElementWithClass("h2", "ir");
 resultHeading.innerHTML = "결과";
 
 const resultText = document.createElement("div");
-resultText.innerText = "컴퓨터 승리"; //변경
+resultText.innerText = ""; //변경
 
 const restartBtn = addElementWithClass("button", "restart-btn");
 const restartBtnText = document.createElement("span");
@@ -129,49 +129,63 @@ restartBtnText.innerText = "재도전";
 restartBtn.appendChild(restartBtnText);
 
 resultSection.appendChild(resultHeading);
+resultSection.appendChild(resultText);
+resultSection.appendChild(restartBtn);
 
-const choices = ["rock", "scissors", "paper"];
 const resultMatric = [
   [0, -1, 1], // rock
   [1, 0, -1], // scissors
   [-1, 1, 0], // paper
 ];
 
-// 컴퓨터 가위바위보 랜덤생성
-
 const generateComputerPick = () => {
-  return Math.floor(Math.random() * 3); // 0,1,2
+  return Math.floor(Math.random() * 3); // 0, 1, 2
 };
 
-// 버튼 클릭에 따라 USER에게서 0~2 입력 받기 0:묵 1:찌 2: 빠
-
-const calculateResult = (USER_PICK, COMPUTER_PICK) => {
+const calculateScore = (USER_PICK, COMPUTER_PICK) => {
   const result = resultMatric[USER_PICK][COMPUTER_PICK];
   if (result > 0) {
     USER_SCORE += 1;
+    resultText.innerText = "유저 승리";
   } else if (result < 0) {
     COMPUTER_SCORE += 1;
-  }
+    resultText.innerText = "컴퓨터 승리";
+  } else resultText.innerText = "비겼어요";
   return;
 };
 
-const resultRender = (USER_SCORE, COMPUTER_SCORE) => {
-  userScore.innerText = USER_SCORE;
-  computerScore.innerText = COMPUTER_SCORE;
+const calculateResult = () => {
+  const temp = USER_SCORE - COMPUTER_SCORE;
 
-  if (REMAINING_POINT) {
-    REMAINING_POINT -= 1;
-    remainigPoint.innerText = REMAINING_POINT;
+  if (temp === 0) {
+    return "무승부";
+  } else if (temp > 0) {
+    return "게임에서 이겼습니다.";
+  } else {
+    return "게임에서 졌습니다.";
   }
 };
 
-// 유저 기준으로 Matrix 점수 획득, 컴퓨터는 반대로
+const resultRender = (USER_SCORE, COMPUTER_SCORE) => {
+  REMAINING_POINT -= 1;
+  remainigPoint.innerText = REMAINING_POINT;
+  userScore.innerText = USER_SCORE;
+  computerScore.innerText = COMPUTER_SCORE;
+
+  if (REMAINING_POINT === 0) {
+    resultText.style.display = "none";
+    remainingBox.style.display = "none";
+    rcpBtnBox.style.display = "none";
+    selectText.innerText = calculateResult();
+    return;
+  }
+};
 
 const handleSiccorsBtn = () => {
   USER_PICK = 1;
   COMPUTER_PICK = generateComputerPick();
 
-  calculateResult(USER_PICK, COMPUTER_PICK);
+  calculateScore(USER_PICK, COMPUTER_PICK);
   resultRender(USER_SCORE, COMPUTER_SCORE);
 
   console.log("가위", "유저 / 컴퓨터", USER_PICK, COMPUTER_PICK);
@@ -181,9 +195,9 @@ const handleSiccorsBtn = () => {
 
 const handleRockBtn = () => {
   USER_PICK = 0;
-  generateComputerPick();
+  COMPUTER_PICK = generateComputerPick();
 
-  calculateResult(USER_PICK, COMPUTER_PICK);
+  calculateScore(USER_PICK, COMPUTER_PICK);
   resultRender(USER_SCORE, COMPUTER_SCORE);
 
   console.log("바위", "유저 / 컴퓨터", USER_PICK, COMPUTER_PICK);
@@ -192,9 +206,9 @@ const handleRockBtn = () => {
 
 const handlePaperBtn = () => {
   USER_PICK = 2;
-  generateComputerPick();
+  COMPUTER_PICK = generateComputerPick();
 
-  calculateResult(USER_PICK, COMPUTER_PICK);
+  calculateScore(USER_PICK, COMPUTER_PICK);
   resultRender(USER_SCORE, COMPUTER_SCORE);
 
   console.log("보", "유저 / 컴퓨터", USER_PICK, COMPUTER_PICK);
@@ -205,6 +219,4 @@ selectBtnScissors.addEventListener("click", handleSiccorsBtn);
 selectBtnRock.addEventListener("click", handleRockBtn);
 selectBtnPaper.addEventListener("click", handlePaperBtn);
 
-// 가위바위보 점수표 만들고 비교 ?
-// 점수 처리
-// 남은 횟수 0회 되면 결과 출력
+// 렌더링 시점 고민하게 된다
