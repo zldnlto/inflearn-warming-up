@@ -1,9 +1,13 @@
+// CONSTANT
+
 let COMPUTER_SCORE = 0;
 let USER_SCORE = 0;
 let REMAINING_POINT = 10;
 
 let USER_PICK = 0;
 let COMPUTER_PICK = 0;
+
+// DOM
 
 const addElementWithId = (element, id) => {
   const newElement = document.createElement(element);
@@ -130,13 +134,30 @@ restartBtn.appendChild(restartBtnText);
 
 resultSection.appendChild(resultHeading);
 resultSection.appendChild(resultText);
+
 resultSection.appendChild(restartBtn);
+
+// 로직 구현
 
 const resultMatric = [
   [0, -1, 1], // rock
   [1, 0, -1], // scissors
   [-1, 1, 0], // paper
 ];
+
+handleRestartBtn = () => {
+  console.log("restart");
+  COMPUTER_SCORE = 0;
+  USER_SCORE = 0;
+  REMAINING_POINT = 10;
+
+  // 아쉬운 부분
+  resultText.style.display = "block";
+  remainingBox.style.display = "block";
+  rcpBtnBox.style.display = "block";
+  selectText.innerText = "";
+  restartBtn.style.display = "none";
+};
 
 const generateComputerPick = () => {
   return Math.floor(Math.random() * 3); // 0, 1, 2
@@ -173,10 +194,13 @@ const resultRender = (USER_SCORE, COMPUTER_SCORE) => {
   computerScore.innerText = COMPUTER_SCORE;
 
   if (REMAINING_POINT === 0) {
+    // 아쉬운 부분
     resultText.style.display = "none";
     remainingBox.style.display = "none";
     rcpBtnBox.style.display = "none";
     selectText.innerText = calculateResult();
+    selectText.style.fontSize = "3.5rem";
+    restartBtn.style.display = "block";
     return;
   }
 };
@@ -218,5 +242,7 @@ const handlePaperBtn = () => {
 selectBtnScissors.addEventListener("click", handleSiccorsBtn);
 selectBtnRock.addEventListener("click", handleRockBtn);
 selectBtnPaper.addEventListener("click", handlePaperBtn);
+
+restartBtn.addEventListener("click", handleRestartBtn);
 
 // 렌더링 시점 고민하게 된다
