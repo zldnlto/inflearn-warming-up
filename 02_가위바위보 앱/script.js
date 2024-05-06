@@ -155,7 +155,55 @@ const calculateResult = (USER_PICK, COMPUTER_PICK) => {
   return;
 };
 
+const resultRender = (USER_SCORE, COMPUTER_SCORE) => {
+  userScore.innerText = USER_SCORE;
+  computerScore.innerText = COMPUTER_SCORE;
+
+  if (REMAINING_POINT) {
+    REMAINING_POINT -= 1;
+    remainigPoint.innerText = REMAINING_POINT;
+  }
+};
+
 // 유저 기준으로 Matrix 점수 획득, 컴퓨터는 반대로
+
+const handleSiccorsBtn = () => {
+  USER_PICK = 1;
+  COMPUTER_PICK = generateComputerPick();
+
+  calculateResult(USER_PICK, COMPUTER_PICK);
+  resultRender(USER_SCORE, COMPUTER_SCORE);
+
+  console.log("가위", "유저 / 컴퓨터", USER_PICK, COMPUTER_PICK);
+  console.log(USER_SCORE, COMPUTER_SCORE);
+  return USER_PICK;
+};
+
+const handleRockBtn = () => {
+  USER_PICK = 0;
+  generateComputerPick();
+
+  calculateResult(USER_PICK, COMPUTER_PICK);
+  resultRender(USER_SCORE, COMPUTER_SCORE);
+
+  console.log("바위", "유저 / 컴퓨터", USER_PICK, COMPUTER_PICK);
+  return USER_PICK;
+};
+
+const handlePaperBtn = () => {
+  USER_PICK = 2;
+  generateComputerPick();
+
+  calculateResult(USER_PICK, COMPUTER_PICK);
+  resultRender(USER_SCORE, COMPUTER_SCORE);
+
+  console.log("보", "유저 / 컴퓨터", USER_PICK, COMPUTER_PICK);
+  return USER_PICK;
+};
+
+selectBtnScissors.addEventListener("click", handleSiccorsBtn);
+selectBtnRock.addEventListener("click", handleRockBtn);
+selectBtnPaper.addEventListener("click", handlePaperBtn);
 
 // 가위바위보 점수표 만들고 비교 ?
 // 점수 처리
