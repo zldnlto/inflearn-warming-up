@@ -65,6 +65,7 @@ const shuffle = (array) => {
   }
 };
 
+// Next버튼 눌렀을 때 해제하는 기능도 추가하기
 const addAnswerBtn = (quizItem) => {
   console.log(quizItem);
   const correct = quizItem.correct_answer;
@@ -88,7 +89,7 @@ const addAnswerBtn = (quizItem) => {
   answerBtnWrapper.append(...btnArr);
 };
 
-handleAnswerBtn = (e) => {
+const handleAnswerBtn = (e) => {
   if (e.target.id === "correct") {
     container.classList.add("correct");
     e.target.classList.add("correct");
@@ -103,8 +104,17 @@ handleAnswerBtn = (e) => {
   }
 };
 
-handleNextBtn = () => {
+const handleNextBtn = () => {
   console.log("Next");
+  while (answerBtnWrapper.firstChild) {
+    answerBtnWrapper.removeChild(answerBtnWrapper.firstChild);
+  }
+  displayQuizData(quizData);
 };
 
 optionBtn.addEventListener("click", handleNextBtn);
+
+// Next까지 구현 완료, 정답이나 오답 선택하고 나서 다른 버튼 비활성화 시키기 ..
+// 문제은행중에 해당 문제 제거 기능 (선택)
+
+// answer 선택하고 정답 오답 결과 표출되면 Next 버튼 focus 상태 되도록
