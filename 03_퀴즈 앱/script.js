@@ -67,6 +67,36 @@ const displayQuizData = (data) => {
   questionText.innerText = quizItem.question;
 
   // 버튼 생성
+  addAnswerBtn(quizItem);
 
   // 오답 처리
+};
+
+const shuffle = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+};
+
+const addAnswerBtn = (quizItem) => {
+  console.log(quizItem);
+  const correct = quizItem.correct_answer;
+  const incorrect = quizItem.incorrect_answers;
+
+  const choices = [correct, ...incorrect];
+  console.log(choices, "choices");
+  const btnArr = [];
+
+  choices.forEach((item, index) => {
+    const btn = document.createElement("button");
+    btn.classList.add("btn", "answer-btn");
+    if (index === 0) {
+      btn.id === "correct";
+    }
+    btn.innerText = item; // 수정
+    btnArr.push(btn);
+  });
+  shuffle(btnArr);
+  answerBtnWrapper.append(...btnArr);
 };
