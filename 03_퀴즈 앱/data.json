@@ -1,24 +1,29 @@
 {
-  "data": [
+  "quiz": [
     {
       "question": "2+2",
-      "answer": "4"
+      "correct_answer": "4",
+      "incorrect_answers": ["8"]
     },
     {
       "question": "2+6",
-      "answer": "8"
+      "correct_answer": "8",
+      "incorrect_answers": ["4", "12"]
     },
     {
       "question": "3x4",
-      "answer": "12"
+      "correct_answer": "12",
+      "incorrect_answers": ["7"]
     },
     {
       "question": "5x32",
-      "answer": "160"
+      "correct_answer": "160",
+      "incorrect_answers": ["8", "192", "180", "37"]
     },
     {
-      "question": "12 / 6",
-      "answer": "2"
+      "question": "12/6",
+      "correct_answer": "2",
+      "incorrect_answers": ["48", "18", "6"]
     }
   ]
 }
