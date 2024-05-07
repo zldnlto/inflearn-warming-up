@@ -27,13 +27,35 @@ button {
   height: 100vh;
   font-size: 1.6rem;
   font-family: inherit;
-  color: white;
   background-image: linear-gradient(to top, #434343 0%, black 100%);
-  /* 공통 */
+}
+
+.container.correct {
+  background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+}
+.container.incorrect {
+  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+}
+
+.answer-btn.correct {
+  border: 1px solid #3cba92;
+  background-color: #0ba360;
+}
+
+.answer-btn.incorrect {
+  border: 1px solid #ffb199;
+  background-color: #ff0844;
 }
 
 .title {
   font-size: 5rem;
+  text-align: center;
+}
+
+.quiz-main {
+  background-color: white;
+  padding: 5rem;
+  border-radius: 1rem;
 }
 
 .quiz-wrapper {
@@ -42,9 +64,6 @@ button {
   flex-direction: column;
   gap: 4rem;
   width: 50rem;
-  padding: 5rem;
-  border: 1.5px solid #414141;
-  border-radius: 0.5rem;
 }
 
 .question {
