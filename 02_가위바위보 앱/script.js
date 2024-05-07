@@ -197,7 +197,7 @@ const resultRender = (USER_SCORE, COMPUTER_SCORE) => {
 
   if (REMAINING_POINT === 0) {
     // 아쉬운 부분
-    resultText.style.display = "none";
+    resultText.innerText = "";
     remainingBox.style.display = "none";
     rcpBtnBox.style.display = "none";
     selectText.innerText = calculateResult();
