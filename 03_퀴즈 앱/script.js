@@ -102,6 +102,13 @@ const handleAnswerBtn = (e) => {
     );
     correctAnswer.classList.add("correct");
   }
+  console.log(Array.from(answerBtnWrapper.children));
+  const btns = Array.from(answerBtnWrapper.children);
+  btns.forEach((btn) => {
+    if (!(btn.id || btn.classList.contains("incorrect"))) {
+      btn.setAttribute("disabled", true);
+    }
+  });
 };
 
 const handleNextBtn = () => {
