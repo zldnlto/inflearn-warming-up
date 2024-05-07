@@ -125,7 +125,7 @@ const resultHeading = addElementWithClass("h2", "ir");
 resultHeading.innerHTML = "결과";
 
 const resultText = document.createElement("div");
-resultText.innerText = ""; //변경
+resultText.innerText = "";
 
 const restartBtn = addElementWithClass("button", "restart-btn");
 const restartBtnText = document.createElement("span");
@@ -145,7 +145,7 @@ const resultMatric = [
   [-1, 1, 0], // paper
 ];
 
-handleRestartBtn = () => {
+const handleRestartBtn = () => {
   console.log("restart");
   COMPUTER_SCORE = 0;
   USER_SCORE = 0;
@@ -246,5 +246,3 @@ selectBtnRock.addEventListener("click", handleRockBtn);
 selectBtnPaper.addEventListener("click", handlePaperBtn);
 
 restartBtn.addEventListener("click", handleRestartBtn);
-
-// 렌더링 시점 고민하게 된다
