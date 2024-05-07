@@ -207,7 +207,7 @@ const resultRender = (USER_SCORE, COMPUTER_SCORE) => {
   }
 };
 
-const handleSiccorsBtn = () => {
+const handleScissorBtn = () => {
   USER_PICK = 1;
   COMPUTER_PICK = generateComputerPick();
 
@@ -241,7 +241,7 @@ const handlePaperBtn = () => {
   return USER_PICK;
 };
 
-selectBtnScissors.addEventListener("click", handleSiccorsBtn);
+selectBtnScissors.addEventListener("click", handleScissorBtn);
 selectBtnRock.addEventListener("click", handleRockBtn);
 selectBtnPaper.addEventListener("click", handlePaperBtn);
 
