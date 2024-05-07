@@ -22,7 +22,22 @@ quizSection.append(optionBtn);
 
 //기능
 
-const LIFE_POINT = 2; // 도전횟수
+// 도전횟수
+let LIFE_POINT = 2;
+
+const drawLifePointEmoji = (LP) => {
+  let lifePointEmoji = "";
+  for (let i = 0; i < LP; i++) {
+    lifePointEmoji += "❤️ ";
+  }
+  lifePoint.innerText = lifePointEmoji;
+  return lifePointEmoji;
+};
+
+const lifePoint = document.createElement("span");
+lifePoint.classList.add("life-point");
+lifePoint.innerText = drawLifePointEmoji(LIFE_POINT);
+quizSection.append(lifePoint);
 
 let quizData;
 
@@ -54,8 +69,6 @@ const displayQuizData = (data) => {
 
   // 버튼 생성
   addAnswerBtn(quizItem);
-
-  // 오답 처리
 };
 
 const shuffle = (array) => {
@@ -101,6 +114,8 @@ const handleAnswerBtn = (e) => {
       (v) => v.id === "correct"
     );
     correctAnswer.classList.add("correct");
+    LIFE_POINT = LIFE_POINT - 1;
+    drawLifePointEmoji(LIFE_POINT);
   }
   console.log(Array.from(answerBtnWrapper.children));
   const btns = Array.from(answerBtnWrapper.children);
@@ -116,6 +131,7 @@ const handleNextBtn = () => {
   while (answerBtnWrapper.firstChild) {
     answerBtnWrapper.removeChild(answerBtnWrapper.firstChild);
   }
+  container.classList.remove("correct", "incorrect");
   displayQuizData(quizData);
 };
 
