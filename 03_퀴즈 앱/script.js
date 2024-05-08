@@ -13,6 +13,9 @@ answerBtnWrapper.classList.add("btn-wrapper");
 
 quizSection.appendChild(answerBtnWrapper);
 
+const lifePoint = document.createElement("span");
+lifePoint.classList.add("life-point");
+
 // option 버튼
 const nextBtn = document.createElement("button");
 nextBtn.classList.add("btn", "option-btn");
@@ -27,15 +30,14 @@ quizSection.append(nextBtn, restartBtn);
 
 //기능
 
-// 도전횟수
-let LIFE_POINT;
+let LIFE_POINT = 2;
 
 const activeRestartBtn = () => {
   // 🐛 이건 왜 동작안할까 LP == 0 인 경우 restart 버튼 빼고 선택지 비활성화 시켜야 함
   const btns = Array.from(answerBtnWrapper.children);
   console.log(btns, "btns정상?");
   btns.forEach((btn) => {
-    return btn.setAttribute("disabled", true);
+    btn.setAttribute("disabled", true);
   });
   lifePoint.innerText = "☠️";
   nextBtn.classList.add("hidden");
@@ -56,8 +58,7 @@ const drawLifePointEmoji = (LP) => {
   return lifePointEmoji;
 };
 
-const lifePoint = document.createElement("span");
-lifePoint.classList.add("life-point");
+lifePoint.innerText = drawLifePointEmoji(LIFE_POINT);
 quizSection.append(lifePoint);
 
 let quizData;
@@ -75,8 +76,6 @@ const init = async () => {
   const res = await dataFetch();
   quizData = [...res.quiz];
   displayQuizData(quizData);
-  LIFE_POINT = 2;
-  lifePoint.innerText = drawLifePointEmoji(LIFE_POINT);
 };
 
 init();
@@ -173,7 +172,9 @@ const handleNextBtn = () => {
 const handleRestartBtn = async () => {
   questionText.innerText = "";
   answerBtnWrapper.innerHTML = "";
-  await init();
+  displayQuizData(quizData);
+  LIFE_POINT = 2;
+  lifePoint.innerText = drawLifePointEmoji(LIFE_POINT);
   nextBtn.classList.remove("hidden");
   restartBtn.classList.add("hidden");
 };
