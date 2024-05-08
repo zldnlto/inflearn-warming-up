@@ -1,0 +1,118 @@
+@import "../common/reset.css";
+@font-face {
+  font-family: "Freesentation-9Black";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2")
+    format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+
+.hidden {
+  display: none;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: "Freesentation-9Black";
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.6rem;
+  font-family: inherit;
+  background-image: linear-gradient(to top, #434343 0%, black 100%);
+}
+
+.container.correct {
+  background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+}
+.container.incorrect {
+  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+}
+
+.answer-btn.correct {
+  border: 1px solid #3cba92;
+  background-color: #0ba360;
+}
+
+.answer-btn.incorrect {
+  border: 1px solid #ffb199;
+  background-color: #ff0844;
+}
+
+.title {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.quiz-main {
+  background-color: white;
+  padding: 5rem;
+  border-radius: 1rem;
+}
+
+.quiz-wrapper {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  width: 50rem;
+}
+
+.question {
+  font-size: 3rem;
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.btn {
+  width: calc(50% - 1rem);
+  padding: 1rem 3rem;
+  border-radius: 0.5rem;
+  background-color: #2d2d2d;
+  color: #fff;
+  border: 1px solid #414141;
+  font-size: inherit;
+}
+
+.btn:hover,
+.btn:focus {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+.btn:active {
+  transform: translateY(2px);
+}
+
+.answer-btn:hover {
+}
+
+.answer-btn:focus {
+}
+
+.option-btn {
+  align-self: flex-end;
+}
+
+.option-btn:active {
+  background-color: #434343;
+}
+
+.option-btn:focus {
+}
