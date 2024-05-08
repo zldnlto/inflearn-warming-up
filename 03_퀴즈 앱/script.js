@@ -33,15 +33,14 @@ quizSection.append(nextBtn, restartBtn);
 let LIFE_POINT = 2;
 
 const activeRestartBtn = () => {
-  // 🐛 이건 왜 동작안할까 LP == 0 인 경우 restart 버튼 빼고 선택지 비활성화 시켜야 함
+  nextBtn.classList.add("hidden");
+  restartBtn.classList.remove("hidden");
   const btns = Array.from(answerBtnWrapper.children);
   console.log(btns, "btns정상?");
   btns.forEach((btn) => {
     btn.setAttribute("disabled", true);
   });
   lifePoint.innerText = "☠️";
-  nextBtn.classList.add("hidden");
-  restartBtn.classList.remove("hidden");
 };
 
 const drawLifePointEmoji = (LP) => {
@@ -139,7 +138,6 @@ const handleAnswerBtn = (e) => {
       (v) => v.id === "correct"
     );
     correctAnswer.classList.add("correct");
-    //얘랑 중복코드
     LIFE_POINT = LIFE_POINT - 1;
     drawLifePointEmoji(LIFE_POINT);
   }
@@ -152,7 +150,10 @@ const handleAnswerBtn = (e) => {
 };
 
 const handleNextBtn = () => {
-  // 정답 안 고르고 Next 선택해도 생명 까임
+  answerBtnWrapper.innerHTML = "";
+  container.classList.remove("correct", "incorrect");
+  displayQuizData(quizData);
+
   const btns = Array.from(answerBtnWrapper.children);
 
   const isSelectedBtn = btns.filter(
@@ -162,11 +163,6 @@ const handleNextBtn = () => {
     LIFE_POINT = LIFE_POINT - 1;
     drawLifePointEmoji(LIFE_POINT);
   }
-
-  answerBtnWrapper.innerHTML = "";
-  container.classList.remove("correct", "incorrect");
-  console.log(quizData, "이부분 오류");
-  displayQuizData(quizData);
 };
 
 const handleRestartBtn = async () => {
@@ -185,6 +181,3 @@ restartBtn.addEventListener("click", handleRestartBtn);
 // 문제은행중에 해당 문제 제거 기능 (선택)
 
 // answer 선택하고 정답 오답 결과 표출되면 Next 버튼 focus 상태 되도록
-
-// Restart 눌렀을 때 화면 깜빡임 현상
-// -> 데이터를 다시 페칭하는 것이 아닌 init() 시에 복사했던데이터를 다시 DOM에 뿌려주는 식으로 동작시키면 어떨까?
