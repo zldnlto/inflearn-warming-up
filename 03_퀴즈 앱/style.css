@@ -7,6 +7,10 @@
   font-style: normal;
 }
 
+.hidden {
+  display: none;
+}
+
 html {
   font-size: 10px;
 }
@@ -100,7 +104,6 @@ button {
 }
 
 .answer-btn:focus {
-  background-color: #434343;
 }
 
 .option-btn {
@@ -109,4 +112,7 @@ button {
 
 .option-btn:active {
   background-color: #434343;
+}
+
+.option-btn:focus {
 }

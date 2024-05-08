@@ -28,9 +28,15 @@ quizSection.append(nextBtn, restartBtn);
 //기능
 
 // 도전횟수
-let LIFE_POINT = 2;
+let LIFE_POINT;
 
 const activeRestartBtn = () => {
+  // 🐛 이건 왜 동작안할까 LP == 0 인 경우 restart 버튼 빼고 선택지 비활성화 시켜야 함
+  const btns = Array.from(answerBtnWrapper.children);
+  console.log(btns, "btns정상?");
+  btns.forEach((btn) => {
+    return btn.setAttribute("disabled", true);
+  });
   lifePoint.innerText = "☠️";
   nextBtn.classList.add("hidden");
   restartBtn.classList.remove("hidden");
@@ -52,20 +58,25 @@ const drawLifePointEmoji = (LP) => {
 
 const lifePoint = document.createElement("span");
 lifePoint.classList.add("life-point");
-lifePoint.innerText = drawLifePointEmoji(LIFE_POINT);
 quizSection.append(lifePoint);
 
 let quizData;
 
-const init = async () => {
+const dataFetch = async () => {
   const res = await fetch("./data.json");
   if (!res.ok) {
     throw new Error("error");
   }
   const data = await res.json();
-  quizData = data.quiz;
+  return data;
+};
 
+const init = async () => {
+  const res = await dataFetch();
+  quizData = [...res.quiz];
   displayQuizData(quizData);
+  LIFE_POINT = 2;
+  lifePoint.innerText = drawLifePointEmoji(LIFE_POINT);
 };
 
 init();
@@ -77,12 +88,10 @@ const selectRandomItem = (arr) => {
 };
 
 const displayQuizData = (data) => {
-  console.log(data, "dpdata");
   // data에서 문제 랜덤 뽑기
   const quizItem = selectRandomItem(data);
-  console.log(quizItem);
+  console.log(quizItem, "🤔");
   questionText.innerText = quizItem.question;
-
   // 버튼 생성
   addAnswerBtn(quizItem);
 };
@@ -155,17 +164,26 @@ const handleNextBtn = () => {
     drawLifePointEmoji(LIFE_POINT);
   }
 
-  console.log("Next");
-  while (answerBtnWrapper.firstChild) {
-    answerBtnWrapper.removeChild(answerBtnWrapper.firstChild);
-  }
+  answerBtnWrapper.innerHTML = "";
   container.classList.remove("correct", "incorrect");
+  console.log(quizData, "이부분 오류");
   displayQuizData(quizData);
 };
 
-nextBtn.addEventListener("click", handleNextBtn);
+const handleRestartBtn = async () => {
+  questionText.innerText = "";
+  answerBtnWrapper.innerHTML = "";
+  await init();
+  nextBtn.classList.remove("hidden");
+  restartBtn.classList.add("hidden");
+};
 
-// Next까지 구현 완료, 정답이나 오답 선택하고 나서 다른 버튼 비활성화 시키기 ..
+nextBtn.addEventListener("click", handleNextBtn);
+restartBtn.addEventListener("click", handleRestartBtn);
+
 // 문제은행중에 해당 문제 제거 기능 (선택)
 
 // answer 선택하고 정답 오답 결과 표출되면 Next 버튼 focus 상태 되도록
+
+// Restart 눌렀을 때 화면 깜빡임 현상
+// -> 데이터를 다시 페칭하는 것이 아닌 init() 시에 복사했던데이터를 다시 DOM에 뿌려주는 식으로 동작시키면 어떨까?
