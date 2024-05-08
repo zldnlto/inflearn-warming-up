@@ -16,12 +16,10 @@ quizSection.appendChild(answerBtnWrapper);
 const lifePoint = document.createElement("span");
 lifePoint.classList.add("life-point");
 
-// option 버튼
 const nextBtn = document.createElement("button");
 nextBtn.classList.add("btn", "option-btn");
 nextBtn.innerText = "Next";
 
-// 재시작 버튼 hidden 디폴트임
 const restartBtn = document.createElement("button");
 restartBtn.classList.add("btn", "option-btn", "hidden");
 restartBtn.innerText = "Restart";
@@ -29,6 +27,23 @@ restartBtn.innerText = "Restart";
 quizSection.append(nextBtn, restartBtn);
 
 //기능
+
+const dataFetch = async () => {
+  const res = await fetch("./data.json");
+  if (!res.ok) {
+    throw new Error("error");
+  }
+  const data = await res.json();
+  return data;
+};
+
+const init = async () => {
+  const res = await dataFetch();
+  quizData = [...res.quiz];
+  displayQuizData(quizData);
+};
+
+init();
 
 let LIFE_POINT = 2;
 
@@ -62,23 +77,6 @@ quizSection.append(lifePoint);
 
 let quizData;
 
-const dataFetch = async () => {
-  const res = await fetch("./data.json");
-  if (!res.ok) {
-    throw new Error("error");
-  }
-  const data = await res.json();
-  return data;
-};
-
-const init = async () => {
-  const res = await dataFetch();
-  quizData = [...res.quiz];
-  displayQuizData(quizData);
-};
-
-init();
-
 const selectRandomItem = (arr) => {
   const randomIndex = Math.floor(Math.random() * arr.length);
   const randomItem = arr[randomIndex];
@@ -86,11 +84,9 @@ const selectRandomItem = (arr) => {
 };
 
 const displayQuizData = (data) => {
-  // data에서 문제 랜덤 뽑기
   const quizItem = selectRandomItem(data);
   console.log(quizItem, "🤔");
   questionText.innerText = quizItem.question;
-  // 버튼 생성
   addAnswerBtn(quizItem);
 };
 
@@ -101,14 +97,12 @@ const shuffle = (array) => {
   }
 };
 
-// Next버튼 눌렀을 때 해제하는 기능도 추가하기
 const addAnswerBtn = (quizItem) => {
   console.log(quizItem);
   const correct = quizItem.correct_answer;
   const incorrect = quizItem.incorrect_answers;
 
   const choices = [correct, ...incorrect];
-  console.log(choices, "choices");
   const btnArr = [];
 
   choices.forEach((item, index) => {
@@ -130,7 +124,6 @@ const handleAnswerBtn = (e) => {
     container.classList.add("correct");
     e.target.classList.add("correct");
   } else {
-    // 오답 경우
     container.classList.add("incorrect");
     e.target.classList.add("incorrect");
 
@@ -178,6 +171,5 @@ const handleRestartBtn = async () => {
 nextBtn.addEventListener("click", handleNextBtn);
 restartBtn.addEventListener("click", handleRestartBtn);
 
-// 문제은행중에 해당 문제 제거 기능 (선택)
-
+// TO_DO
 // answer 선택하고 정답 오답 결과 표출되면 Next 버튼 focus 상태 되도록
