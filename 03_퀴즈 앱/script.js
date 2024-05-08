@@ -50,16 +50,10 @@ let LIFE_POINT = 2;
 const activeRestartBtn = () => {
   nextBtn.classList.add("hidden");
   restartBtn.classList.remove("hidden");
-  const btns = Array.from(answerBtnWrapper.children);
-  console.log(btns, "btns정상?");
-  btns.forEach((btn) => {
-    btn.setAttribute("disabled", true);
-  });
   lifePoint.innerText = "☠️";
 };
 
 const drawLifePointEmoji = (LP) => {
-  console.log(LP);
   let lifePointEmoji = "";
   if (LP === 0) {
     activeRestartBtn();
@@ -85,7 +79,6 @@ const selectRandomItem = (arr) => {
 
 const displayQuizData = (data) => {
   const quizItem = selectRandomItem(data);
-  console.log(quizItem, "🤔");
   questionText.innerText = quizItem.question;
   addAnswerBtn(quizItem);
 };
@@ -98,7 +91,6 @@ const shuffle = (array) => {
 };
 
 const addAnswerBtn = (quizItem) => {
-  console.log(quizItem);
   const correct = quizItem.correct_answer;
   const incorrect = quizItem.incorrect_answers;
 
@@ -120,10 +112,10 @@ const addAnswerBtn = (quizItem) => {
 };
 
 const handleAnswerBtn = (e) => {
-  if (e.target.id === "correct") {
+  if (LIFE_POINT && e.target.id === "correct") {
     container.classList.add("correct");
     e.target.classList.add("correct");
-  } else {
+  } else if (LIFE_POINT && e.target.id !== "correct") {
     container.classList.add("incorrect");
     e.target.classList.add("incorrect");
 
@@ -132,8 +124,8 @@ const handleAnswerBtn = (e) => {
     );
     correctAnswer.classList.add("correct");
     LIFE_POINT = LIFE_POINT - 1;
-    drawLifePointEmoji(LIFE_POINT);
   }
+
   const btns = Array.from(answerBtnWrapper.children);
   btns.forEach((btn) => {
     if (!(btn.id || btn.classList.contains("incorrect"))) {
@@ -143,19 +135,21 @@ const handleAnswerBtn = (e) => {
 };
 
 const handleNextBtn = () => {
-  answerBtnWrapper.innerHTML = "";
+  drawLifePointEmoji(LIFE_POINT);
   container.classList.remove("correct", "incorrect");
-  displayQuizData(quizData);
 
   const btns = Array.from(answerBtnWrapper.children);
 
-  const isSelectedBtn = btns.filter(
+  const noSelected = btns.filter(
     (v) => v.classList.contains("incorrect") || v.classList.contains("correct")
   );
-  if (isSelectedBtn.length === 0) {
+
+  if (noSelected.length === 0) {
     LIFE_POINT = LIFE_POINT - 1;
     drawLifePointEmoji(LIFE_POINT);
   }
+  answerBtnWrapper.innerHTML = "";
+  displayQuizData(quizData);
 };
 
 const handleRestartBtn = async () => {
@@ -166,6 +160,7 @@ const handleRestartBtn = async () => {
   lifePoint.innerText = drawLifePointEmoji(LIFE_POINT);
   nextBtn.classList.remove("hidden");
   restartBtn.classList.add("hidden");
+  container.classList.remove("incorrect");
 };
 
 nextBtn.addEventListener("click", handleNextBtn);
