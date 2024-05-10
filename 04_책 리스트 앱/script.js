@@ -12,12 +12,29 @@ const authorInput = bookForm.querySelector(".author-input");
 const submitBtn = bookForm.querySelector(".submit-btn");
 
 // BOOK_LIST_SECTION
-const bookListSection = main.querySelector("#form-section");
+const bookListSection = main.querySelector("#book-list-section");
 
-//추가하기
+const bookListItems = bookListSection.querySelector(".book-list-items");
 
-//추가할 때 notice 출력
-//추가하고 나서 form 비우기
+// item DOM 생성
+const bookListItem = document.createElement("li");
+bookListItem.className = "book-list-item";
+const bookTitle = document.createElement("span");
+bookTitle.className = "title-item";
+bookTitle.innerText = "책이름1";
+
+const bookAuthor = document.createElement("span");
+bookAuthor.className = "author-item";
+bookAuthor.innerText = "저자명";
+
+const bookItemDeleteBtnBox = document.createElement("span");
+const bookItemDeleteBtn = document.createElement("button");
+bookItemDeleteBtn.className = "delete-btn";
+bookItemDeleteBtnBox.appendChild(bookItemDeleteBtn);
+
+bookListItem.append(bookTitle, bookAuthor, bookItemDeleteBtnBox);
+
+bookListItems.append(bookListItem);
 
 //삭제
 //삭제할 때 notice 출력
