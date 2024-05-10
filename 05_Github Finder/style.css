@@ -65,10 +65,14 @@ body {
   flex-direction: column;
   gap: 2rem;
   width: 100%;
-  padding: 2.5rem;
+  padding: calc(4.6rem + 2.5rem) 2.5rem;
 }
 
 #main .notice {
+  position: absolute;
+  top: -5.8rem;
+  right: 0;
+  left: 0;
   padding: 1.5rem 2rem;
   background-color: #0f172a1a;
   text-align: left;
@@ -77,6 +81,7 @@ body {
 }
 
 .sec-search {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
@@ -109,12 +114,19 @@ body {
 
 /* 유저 기본 정보 */
 
+.user-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .user-profile {
   display: flex;
 }
 
 .user-profile .user-profile-img {
-  flex-basis: 30rem;
+  flex-basis: 31rem;
+  padding: 1rem;
   flex-shrink: 0;
 
   display: flex;
@@ -125,6 +137,7 @@ body {
 
 .user-profile .profile-btn {
   width: 70%;
+  margin-top: 1rem;
   padding: 1rem 2rem;
   background-color: var(--blue-color);
   border: none;
@@ -145,22 +158,23 @@ body {
   font-size: 1.4rem;
 }
 
-.user-stats-list .stats-badge {
+.badge {
   padding: 0.8rem 1.3rem;
   border-radius: 0.3rem;
   color: #fff;
+  cursor: default;
 }
 
-.stats-badge.public-repos {
+.badge.public-repos {
   background-color: var(--blue-color);
 }
-.stats-badge.gists {
+.badge.gists {
   background-color: var(--gray-color);
 }
-.stats-badge.followers {
+.badge.followers {
   background-color: var(--green-color);
 }
-.stats-badge.followings {
+.badge.followings {
   background-color: var(--greenblue-color);
 }
 
@@ -184,16 +198,47 @@ body {
   border-bottom: 1px solid var(--gray-color);
 }
 
-.user-detail .company {
-}
-.user-detail .website-link {
+/* 최신 레포지토리 */
+
+.latest-repos .latest-repos-title {
+  font-size: 3.6rem;
 }
 
-.user-detail .location {
+.latest-repos .repo-items {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  background-color: transparent;
+  border: 1px solid var(--gray-color);
+  border-radius: 0.4rem;
 }
 
-.user-detail .join-date {
+.repo-items .repo-item {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 1rem 2rem;
+  boreder: 1px solid var(--gray-color);
+  border-radius: 0.4rem;
+  padding: 2rem;
 }
+
+.repo-items .repo-item:not(:last-child) {
+  border-bottom: 1px solid var(--gray-color);
+}
+
+.badge.repo-stars {
+  background-color: var(--blue-color);
+}
+.badge.repo-watchers {
+  background-color: var(--gray-color);
+}
+.badge.repo-forks {
+  background-color: var(--green-color);
+}
+
+/* FOOTER */
 
 #footer {
   display: flex;
