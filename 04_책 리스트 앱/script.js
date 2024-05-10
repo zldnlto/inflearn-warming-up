@@ -16,6 +16,24 @@ const bookListSection = main.querySelector("#book-list-section");
 
 const bookListItems = bookListSection.querySelector(".book-list-items");
 
+// 기능 구현
+
+let BOOK_LIST = [];
+let bookInfo = { title: "", author: "" };
+
+// 삭제
+
+const handleDeleteBtn = (e) => {
+  //DOM 삭제
+  const parent = e.target.parentNode;
+  console.log(parent);
+  parent.remove();
+
+  //DATA에서 삭제 -> 인덱스 이용하는 수밖에 없을듯,,,,,,,
+};
+
+// 삭제할 때 notice 출력
+
 const generateBookListItem = (bookInfo) => {
   console.log(bookInfo);
   const bookListItem = document.createElement("li");
@@ -28,27 +46,21 @@ const generateBookListItem = (bookInfo) => {
   bookAuthor.className = "author-item";
   bookAuthor.innerText = bookInfo.author;
 
-  const bookItemDeleteBtnBox = document.createElement("span");
   const bookItemDeleteBtn = document.createElement("button");
   bookItemDeleteBtn.className = "delete-btn";
-  bookItemDeleteBtnBox.appendChild(bookItemDeleteBtn);
+  bookItemDeleteBtn.addEventListener("click", handleDeleteBtn);
 
-  //deleteBtn 이벤트리스너 달기
-
-  bookListItem.append(bookTitle, bookAuthor, bookItemDeleteBtnBox);
+  bookListItem.append(bookTitle, bookAuthor, bookItemDeleteBtn);
 
   return bookListItem;
-  //append는 따로해야함   bookListItems.append(bookListItem);
 };
 
-let bookInfo = { title: "", author: "" };
-
 const handleTitleInput = (e) => {
-  bookInfo.title = e.target.value;
+  bookInfo.title = e.target.value.trim();
 };
 
 const handleAuthorInput = (e) => {
-  bookInfo.author = e.target.value;
+  bookInfo.author = e.target.value.trim();
 };
 
 titleInput.addEventListener("keydown", handleTitleInput);
@@ -56,28 +68,30 @@ titleInput.addEventListener("keydown", handleTitleInput);
 authorInput.addEventListener("keydown", handleAuthorInput);
 
 const addBookItem = (data) => {
-  console.log("addBookItem");
+  console.log("addBookItem", data);
+  // 아이템을 추가할때 id 부여
   const bookItem = generateBookListItem(data);
   bookListItems.append(bookItem);
-  //구현
+  BOOK_LIST.push({ ...data });
+
+  console.log("booklist", BOOK_LIST);
 };
 
 //추가할 때 notice 출력
 //추가하고 나서 form 비우기
 
+// bookInfo를 객체에 추가할때 trim 작업 해주기
+
 const handleSubmitBtn = (e) => {
   e.preventDefault();
+  if (!bookInfo.title || !bookInfo.author) {
+    return;
+  }
   addBookItem(bookInfo);
-
-  //비우기 작업
   titleInput.value = "";
   authorInput.value = "";
   bookInfo.title = "";
   bookInfo.author = "";
-  console.log(bookInfo);
 };
 
 submitBtn.addEventListener("click", handleSubmitBtn);
-
-//삭제
-//삭제할 때 notice 출력
