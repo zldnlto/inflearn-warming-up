@@ -35,20 +35,36 @@
             <h4 class="ir">유저 기본 정보</h4>
             <div class="user-profile-img">
               <img src="./assets/dummy-profile.svg" alt="유저 프로필" />
-              <button>View Profile</button>
+              <button class="profile-btn">View Profile</button>
             </div>
             <div class="user-info">
               <ul class="user-stats-list">
-                <li>Public Repos: 54</li>
-                <li>Public Gists: 0</li>
-                <li>Followers: 1202</li>
-                <li>Following: 0</li>
+                <li class="stats-badge public-repos">
+                  Public Repos: <span>54</span>
+                </li>
+                <li class="stats-badge gists">Public Gists: <span>0</span></li>
+                <li class="stats-badge followers">
+                  Followers: <span>1202</span>
+                </li>
+                <li class="stats-badge followings">
+                  Following: <span>0</span>
+                </li>
               </ul>
               <ul class="user-details-list">
-                <li>Company: null</li>
-                <li>Website/Blog: https://www.youtube.com/...</li>
-                <li>Location: Korea Bundang-gu</li>
-                <li>Member Since: 2018-04-26...</li>
+                <li class="user-detail company">
+                  Company: <span class="company">null</span>
+                </li>
+                <li class="user-detail">
+                  Website/Blog:
+                  <span class="website-link">https://www.youtube.com/...</span>
+                </li>
+                <li class="user-detail location">
+                  Location:
+                  <span class="location">Korea Bundang-gu</span>
+                </li>
+                <li class="user-detail join-date">
+                  Member Since: <span class="join-date">2018-04-26...</span>
+                </li>
               </ul>
             </div>
           </section>
