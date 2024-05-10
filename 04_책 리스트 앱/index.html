@@ -21,12 +21,11 @@
           /><span> 책을 읽읍시다 </span>
         </h1>
       </header>
-      <main>
-        <p class="notice">Notice: 책이 추가되었습니다.</p>
+      <main id="main">
+        <p class="notice active">Notice: 책이 추가되었습니다.</p>
         <section id="form-section">
-          <!-- section 클래스명 고민 -->
           <h2 class="ir">책 정보 입력</h2>
-          <form action="" class="book-form">
+          <form class="book-form">
             <div class="book-info title">
               <label for="title" class="book-label">책 이름</label>
               <input
@@ -55,15 +54,9 @@
         <section id="book-list-section">
           <div class="book-list-wrapper">
             <ol class="book-list-items">
-              <!-- head역할을 하는 첫번째 child만 조작 -->
               <li class="book-list-item">
                 <span class="title-item">책 이름</span>
                 <span>책 저자</span>
-              </li>
-              <li class="book-list-item">
-                <span class="title-item">책 이름1</span>
-                <span class="author-item">책 저자1</span>
-                <span><button class="delete-btn"></button></span>
               </li>
               <li class="book-list-item">
                 <span class="title-item">책 이름1</span>
