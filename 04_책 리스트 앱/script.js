@@ -19,7 +19,7 @@ const bookListItems = bookListSection.querySelector(".book-list-items");
 // 기능 구현
 
 let BOOK_LIST = [];
-let bookInfo = { title: "", author: "" };
+let bookInfo = { id: "", title: "", author: "" };
 
 // 삭제
 
@@ -67,9 +67,16 @@ titleInput.addEventListener("keydown", handleTitleInput);
 
 authorInput.addEventListener("keydown", handleAuthorInput);
 
+const generateRandomString = () => {
+  return Math.random().toString().split(".")[1].substring(0, 8);
+};
+
+console.log(generateRandomString());
+
 const addBookItem = (data) => {
   console.log("addBookItem", data);
   // 아이템을 추가할때 id 부여
+  data.id = `${data.title}${data.author}${generateRandomString()}`;
   const bookItem = generateBookListItem(data);
   bookListItems.append(bookItem);
   BOOK_LIST.push({ ...data });
