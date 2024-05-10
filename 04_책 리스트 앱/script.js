@@ -24,15 +24,18 @@ let bookInfo = { id: "", title: "", author: "" };
 // 삭제
 
 const handleDeleteBtn = (e) => {
-  //DOM 삭제
   const parent = e.target.parentNode;
-  console.log(parent);
+  const id = parent.id;
+  const index = BOOK_LIST.findIndex((v) => v.id === id);
+  BOOK_LIST.splice(index, 1);
   parent.remove();
-
-  //DATA에서 삭제 -> 인덱스 이용하는 수밖에 없을듯,,,,,,,
 };
 
 // 삭제할 때 notice 출력
+
+const generateRandomString = () => {
+  return Math.random().toString().split(".")[1].substring(0, 8);
+};
 
 const generateBookListItem = (bookInfo) => {
   console.log(bookInfo);
@@ -50,6 +53,7 @@ const generateBookListItem = (bookInfo) => {
   bookItemDeleteBtn.className = "delete-btn";
   bookItemDeleteBtn.addEventListener("click", handleDeleteBtn);
 
+  bookListItem.id = bookInfo.id;
   bookListItem.append(bookTitle, bookAuthor, bookItemDeleteBtn);
 
   return bookListItem;
@@ -67,12 +71,6 @@ titleInput.addEventListener("keydown", handleTitleInput);
 
 authorInput.addEventListener("keydown", handleAuthorInput);
 
-const generateRandomString = () => {
-  return Math.random().toString().split(".")[1].substring(0, 8);
-};
-
-console.log(generateRandomString());
-
 const addBookItem = (data) => {
   console.log("addBookItem", data);
   // 아이템을 추가할때 id 부여
@@ -85,9 +83,6 @@ const addBookItem = (data) => {
 };
 
 //추가할 때 notice 출력
-//추가하고 나서 form 비우기
-
-// bookInfo를 객체에 추가할때 trim 작업 해주기
 
 const handleSubmitBtn = (e) => {
   e.preventDefault();
