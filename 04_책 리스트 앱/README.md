@@ -65,10 +65,8 @@ const noticeTimeout = (msg) => {
 
 삭제, 추가 등의 안내 메세지를 인자로 받아서 notice 메세지가 담긴 엘리먼트를 일정 시간동안 active한다.
 
-### soruce
+### ⓒ license
 
-- 웨이브 파도체
-  (https://noonnu.cc/font_page/1370)
+- [눈누](https://noonnu.cc/font_page/1370) : 웨이브 파도체
 
-- `/assets` 의 모든 아이콘 svg  
-  fontawesome (https://fontawesome.com/)
+- [Fontawesome](https://fontawesome.com/) 아이콘 폰트 사용 - `/assets` 의 모든 아이콘 svg
