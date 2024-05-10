@@ -2,6 +2,9 @@
 
 const main = document.getElementById("main");
 
+const notice = document.createElement("p");
+notice.className = "notice";
+
 //FORM_SECTION
 
 const formSection = main.querySelector("#form-section");
@@ -16,12 +19,20 @@ const bookListSection = main.querySelector("#book-list-section");
 
 const bookListItems = bookListSection.querySelector(".book-list-items");
 
+main.insertBefore(notice, formSection);
+
 // 기능 구현
 
 let BOOK_LIST = [];
 let bookInfo = { id: "", title: "", author: "" };
 
-// 삭제
+const noticeTimeout = (msg) => {
+  notice.classList.add("active");
+  notice.innerText = msg;
+  setTimeout(() => {
+    notice.classList.remove("active");
+  }, 2000);
+};
 
 const handleDeleteBtn = (e) => {
   const parent = e.target.parentNode;
@@ -29,9 +40,9 @@ const handleDeleteBtn = (e) => {
   const index = BOOK_LIST.findIndex((v) => v.id === id);
   BOOK_LIST.splice(index, 1);
   parent.remove();
-};
 
-// 삭제할 때 notice 출력
+  noticeTimeout("책이 삭제되었습니다.");
+};
 
 const generateRandomString = () => {
   return Math.random().toString().split(".")[1].substring(0, 8);
@@ -72,17 +83,13 @@ titleInput.addEventListener("keydown", handleTitleInput);
 authorInput.addEventListener("keydown", handleAuthorInput);
 
 const addBookItem = (data) => {
-  console.log("addBookItem", data);
-  // 아이템을 추가할때 id 부여
   data.id = `${data.title}${data.author}${generateRandomString()}`;
   const bookItem = generateBookListItem(data);
   bookListItems.append(bookItem);
   BOOK_LIST.push({ ...data });
 
-  console.log("booklist", BOOK_LIST);
+  noticeTimeout("책이 추가되었습니다.");
 };
-
-//추가할 때 notice 출력
 
 const handleSubmitBtn = (e) => {
   e.preventDefault();

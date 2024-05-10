@@ -63,7 +63,15 @@ button {
   border-radius: 0.3rem;
   letter-spacing: 0.4px;
   text-align: center;
+
+  opacity: 0; 
+  transition: opacity 0.3s ease; /
 }
+
+.notice.active {
+  opacity: 1;
+}
+
 
 #form-section {
   margin-top: 4rem;
