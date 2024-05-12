@@ -24,4 +24,6 @@ function shuffle(array) {
 }
 ```
 
-font 정보 : 프리젠테이션 (https://noonnu.cc/font_page/1369)
+### ⓒ license
+
+- [눈누](https://noonnu.cc/font_page/1369) : 프리젠테이션

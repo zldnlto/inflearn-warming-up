@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github Finder</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header id="header">
+      <h1 class="title">GitHub Finder</h1>
+    </header>
+    <main id="main">
+      <section class="section sec-search">
+        <h2 class="search-title">Search GitHub Users</h2>
+        <!-- <p class="notice">User not found!</p> -->
+        <p>Enter a username to fetch a user profile and repos</p>
+        <input type="text" class="search-input" />
+      </section>
+      <section class="sec-result">
+        <h2 class="ir">유저 검색 결과</h2>
+        <article class="user-card">
+          <h3 class="ir">유저 정보</h3>
+          <!-- <section class="section user-profile">
+            <h4 class="ir">유저 기본 정보</h4>
+            <div class="user-profile-img">
+              <img src="./assets/dummy-profile.svg" alt="유저 프로필 사진" />
+              <button class="profile-btn">View Profile</button>
+            </div>
+            <div class="user-info">
+              
+              <ul class="user-stats-list">
+                <li class="public-repos badge">
+                  Public Repos: <span>54</span>
+                </li>
+                <li class="gists badge">Public Gists: <span>0</span></li>
+                <li class="followers badge">Followers: <span>1202</span></li>
+                <li class="followings badge">Following: <span>0</span></li>
+              </ul>
+              
+              <ul class="user-details-list">
+                <li class="user-detail company">
+                  Company: <span class="company">null</span>
+                </li>
+                <li class="user-detail">
+                  Website/Blog:
+                  <span class="website-link">https://www.youtube.com/...</span>
+                </li>
+                <li class="user-detail location">
+                  Location:
+                  <span class="location">Korea Bundang-gu</span>
+                </li>
+                <li class="user-detail join-date">
+                  Member Since: <span class="join-date">2018-04-26...</span>
+                </li>
+              </ul>
+            </div>
+          </section> -->
+          <!-- <section class="section latest-repos">
+            <h4 class="latest-repos-title">Latest Repos</h4>
+            <ul class="repo-items">
+              <li class="repo-item">
+                <span class="repo-title">react-deploy-test</span>
+                <div class="repo-stats">
+                  <span class="repo-stars badge">stars: 2</span>
+                  <span class="repo-watchers badge">watchers: 2</span>
+                  <span class="repo-forks badge">forks: undefined</span>
+                </div>
+              </li>
+            </ul>
+          </section> -->
+        </article>
+      </section>
+    </main>
+    <footer id="footer">Github Finder ⓒ</footer>
+    <script src="./script.js" type="module"></script>
+  </body>
+</html>

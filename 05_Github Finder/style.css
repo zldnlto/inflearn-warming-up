@@ -1,0 +1,274 @@
+@import "../common/reset.css";
+
+:root {
+  --white-color: rgba(255, 255, 255, 0.8);
+  --gray-color: #b3bbc5;
+  --blue-color: #4581e9;
+  --green-color: #00b874;
+  --greenblue-color: #18a0b8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  min-width: 872px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 1.6rem;
+  background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
+}
+
+a {
+  text-decoration-line: none;
+}
+
+/* 큰 section 공통스타일 */
+.section {
+  padding: 2rem;
+  border-radius: 0.4rem;
+  background-color: var(--white-color);
+}
+
+/* HEADER */
+
+#header {
+  background-color: #0f172a1a;
+}
+
+#header .title {
+  width: 100%;
+  padding: 1.8rem;
+  background-color: transparent;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+  border: 1px solid #e5e7eb;
+}
+
+#header .title::before {
+  content: "";
+  display: inline-block;
+  margin: -0.3rem 1rem;
+  width: 3rem;
+  height: 3rem;
+
+  vertical-align: bottom;
+  background-image: url("./assets/github_cat.svg");
+  background-repeat: no-repeat;
+}
+
+/* MAIN */
+
+#main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  padding: calc(4.6rem + 2rem) 2.5rem;
+}
+
+#main .notice {
+  position: absolute;
+  top: -5.6rem;
+  right: 0;
+  left: 0;
+  padding: 1.5rem 2rem;
+  background-color: #0f172a1a;
+  text-align: left;
+  border-radius: 0.4rem;
+  opacity: 0;
+}
+
+#main .notice.active {
+  opacity: 1;
+}
+
+.sec-search {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.sec-search .search-title {
+  font-size: 3.6rem;
+  font-weight: 800;
+}
+
+.sec-search .search-title::after {
+  content: "";
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  margin: 0 1rem;
+
+  vertical-align: bottom;
+  background-image: url("./assets/search.svg");
+  background-repeat: no-repeat;
+}
+
+.sec-search .search-input {
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.8rem;
+  font-family: inherit;
+  outline-color: #9face6;
+}
+
+/* 유저 기본 정보 */
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.user-profile {
+  display: flex;
+}
+
+.user-profile .user-profile-img {
+  flex-basis: 31rem;
+  padding: 1rem;
+  flex-shrink: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-profile .profile-link {
+  width: 70%;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  background-color: var(--blue-color);
+  border: none;
+  border-radius: 4rem;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.user-profile .user-info {
+  flex-basis: 100%;
+  height: 100%;
+  margin-left: 2rem;
+}
+
+.user-info .user-stats-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+
+.username {
+  margin: 3rem 0.5rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.badge {
+  padding: 0.8rem 1.3rem;
+  border-radius: 0.3rem;
+  color: #fff;
+  cursor: default;
+  flex-shrink: 0;
+}
+
+.badge.public-repos {
+  background-color: var(--blue-color);
+}
+.badge.gists {
+  background-color: var(--gray-color);
+}
+.badge.followers {
+  background-color: var(--green-color);
+}
+.badge.followings {
+  background-color: var(--greenblue-color);
+}
+
+.user-info .user-details-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+
+  height: 100%;
+
+  background-color: transparent;
+  border: 1px solid var(--gray-color);
+  border-radius: 0.4rem;
+}
+
+.user-details-list .user-detail {
+  padding: 2rem;
+}
+
+.user-details-list .user-detail:not(:last-child) {
+  border-bottom: 1px solid var(--gray-color);
+}
+
+/* 최신 레포지토리 */
+
+.latest-repos .latest-repos-title {
+  font-size: 3.6rem;
+}
+
+.latest-repos .repo-items {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  background-color: transparent;
+  border: 1px solid var(--gray-color);
+  border-radius: 0.4rem;
+}
+
+.repo-items .repo-item {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 1rem 2rem;
+  boreder: 1px solid var(--gray-color);
+  border-radius: 0.4rem;
+  padding: 2rem;
+}
+
+.repo-items .repo-item:not(:last-child) {
+  border-bottom: 1px solid var(--gray-color);
+}
+
+.badge.repo-stars {
+  background-color: var(--blue-color);
+}
+.badge.repo-watchers {
+  background-color: var(--gray-color);
+}
+.badge.repo-forks {
+  background-color: var(--green-color);
+}
+
+/* FOOTER */
+
+#footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 7rem;
+  padding: 2rem;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+
+  background-color: #e5e7eb;
+}
