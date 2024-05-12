@@ -23,6 +23,10 @@ body {
   background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
 }
 
+a {
+  text-decoration-line: none;
+}
+
 /* 큰 section 공통스타일 */
 .section {
   padding: 2rem;
@@ -139,7 +143,7 @@ body {
   align-items: center;
 }
 
-.user-profile .profile-btn {
+.user-profile .profile-link {
   width: 70%;
   margin-top: 1rem;
   padding: 1rem 2rem;
