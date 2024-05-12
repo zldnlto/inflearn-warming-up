@@ -123,32 +123,38 @@ const createUserInfo = (userData) => {
   console.log(userData);
   const joinDate = userData.created_at.substring(0, 10).replaceAll("-", "/");
   userInfoBox.innerHTML = `
-             <ul class="user-stats-list">
-                <li class="public-repos badge">
-                  Public Repos: <span>${userData.public_repos}</span>
-                </li>
-                <li class="gists badge">Public Gists: 
-                <span>${userData.public_gists}</span></li>
-                <li class="followers badge">Followers: <span>${userData.followers}</span></li>
-                <li class="followings badge">Following: <span>${userData.following}</span></li>
-              </ul>
-              <p class="username">${userData.login}</p>
-              <ul class="user-details-list">
-                <li class="user-detail company">
-                  Company: <span class="company">${userData.company}</span>
-                </li>
-                <li class="user-detail">
-                  Website/Blog:
-                  <a href=${userData.blog} class="website-link">${userData.blog}</a>
-                </li>
-                <li class="user-detail location">
-                  Location:
-                  <span class="location">${userData.location}</span>
-                </li>
-                <li class="user-detail join-date">
-                  Member Since: <span class="join-date">${joinDate}</span>
-                </li>
-              </ul>
+    <ul class="user-stats-list">
+	    <li class="public-repos badge">
+		    Public Repos: <span>${userData.public_repos}</span>
+	    </li>
+	    <li class="gists badge">Public Gists: 
+		    <span>${userData.public_gists}</span>
+	    </li>
+	    <li class="followers badge">Followers: 
+		    <span>${userData.followers}</span>
+	    </li>
+	    <li class="followings badge">Following: 
+		    <span>${userData.following}</span>
+	    </li>
+    </ul>
+    <p class="username">${userData.login}</p>
+    <ul class="user-details-list">
+	    <li class="user-detail company">
+		    Company: <span class="company">${userData.company}</span>
+    	</li>
+	    <li class="user-detail">
+		    Website/Blog:
+		    <a href=${userData.blog} class="website-link">${userData.blog}</a>
+    	</li>
+    	<li class="user-detail location">
+		    Location:
+		    <span class="location">${userData.location}</span>
+	    </li>
+	    <li class="user-detail join-date">
+		    Member Since: 
+		    <span class="join-date">${joinDate}</span>
+	    </li>
+    </ul>
   `;
 };
 
@@ -159,17 +165,18 @@ const createRepoItems = (latestRepoArr) => {
   if (latestRepoArr.length) {
     latestRepoArr.forEach((item) => {
       const repoItem = `
-        <li class="repo-item">
-          <a href="${item.url}" class="repo-title">${item.name}</a>
-            <div class="repo-stats">
-              <span class="repo-stars badge">stars: ${item.stargazers_count}</span>
-              <span class="repo-watchers badge">watchers:  ${item.watchers_count}</span>
-              <span class="repo-forks badge">forks: ${item.forks}</span>
-            </div>
-        </li>
-      `;
+      <li class="repo-item">
+        <a href="${item.url}" class="repo-title">${item.name}</a>
+        <div class="repo-stats">
+          <span class="repo-stars badge">stars: ${item.stargazers_count}</span>
+          <span class="repo-watchers badge">watchers: ${item.watchers_count}</span>
+          <span class="repo-forks badge">forks: ${item.forks}</span>
+       </div>
+      </li>`;
       repoItems += repoItem;
     });
   }
   return repoItems;
 };
+
+// 레포지토리 <a></a> 태그로 수정 후 링크 연동하기 (_target)
