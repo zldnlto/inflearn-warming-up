@@ -21,14 +21,36 @@ const resultSection = main.querySelector(".sec-result");
 // USER CARD
 
 const userCard = resultSection.querySelector(".user-card");
-const userProfileSection = userCard.querySelector(".user-profile");
-const userProfileImgBox = userProfileSection.querySelector(".user-profile-img");
-const userInfoBox = userProfileSection.querySelector(".user-info");
+const userProfileSection = document.createElement("section");
 
-const latestReposSection = userCard.querySelector(".latest-repos");
-const latestRepoItems = latestReposSection.querySelector(".repo-items");
+const userProfileTitle = document.createElement("h4");
+userProfileTitle.className = "ir";
+userProfileTitle.innerText = "유저 기본 정보";
+userProfileSection.appendChild(userProfileTitle);
+
+userProfileSection.className = "section user-profile";
+const userProfileImgBox = document.createElement("div");
+userProfileImgBox.className = "user-profile-img";
+
+const userInfoBox = document.createElement("div");
+userInfoBox.className = "user-info";
+userProfileSection.append(userProfileImgBox, userInfoBox);
+
+// L-REPOS
+const latestReposSection = document.createElement("section");
+latestReposSection.className = "section latest-repos";
+
+const latestReposTitle = document.createElement("h4");
+latestReposTitle.className = "latest-repos-title";
+latestReposTitle.innerText = "Latest Repos";
+latestReposSection.appendChild(latestReposTitle);
+
+const latestRepoItems = document.createElement("ul");
+latestRepoItems.className = "repo-items";
 
 // 검색 기능
+// 쓰로틀링 기능 도입 필요
+// data가 여러개 불러와지는데 일단 제일 첫번째 유저만 출력하도록 기능 구현
 
 const handleSearchInput = async (e) => {
   const value = e.target.value;
@@ -37,17 +59,25 @@ const handleSearchInput = async (e) => {
   }
   try {
     const userData = await findUserInfo(value);
+    if (!userData) {
+      return;
+    }
     createUserProfileImg(userData);
     createUserInfo(userData);
-    console.log(userData, "있음?");
+    userCard.appendChild(userProfileSection);
+    console.log(userData.repos_url);
+
+    const latestRepoArr = await findUserRepoInfo(userData.login);
+    const latestRepoItem = createRepoItems(latestRepoArr);
+    latestRepoItems.innerHTML = latestRepoItem;
+    latestReposSection.appendChild(latestRepoItems);
+    userCard.appendChild(latestReposSection);
   } catch (error) {
     console.error("ERROR", error);
   }
 };
 
 searchInput.addEventListener("keyup", handleSearchInput);
-
-// const url = "https://api.github.com";
 
 //에러처리 보완 필요 if(response.status 부분)
 const findUserInfo = async (userId) => {
@@ -60,19 +90,31 @@ const findUserInfo = async (userId) => {
     });
 
     if (response.status === 404) {
-      console.log("User not found");
+      console.log("not found");
       // 이후 에러 처리 로직을 추가 -> notice 출력
       return;
     }
 
-    // console.log("💿 data", response.data);
     return response.data;
   } catch (error) {
-    console.error("Error");
+    console.error("Error / findUserInfo err");
   }
 };
 
-// data가 여러개 불러와지는데 일단 제일 첫번째 유저만 출력하도록 기능 구현
+const findUserRepoInfo = async (userId) => {
+  try {
+    const response = await fetch(
+      `https://api.github.com/users/${userId}/repos`
+    );
+    const data = await response.json();
+    data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    const repoArr = data.splice(0, 5);
+    return repoArr;
+  } catch (error) {
+    console.error("Error fetching user repos:", error);
+    throw error;
+  }
+};
 
 // userProfileImgBox
 
@@ -116,14 +158,24 @@ const createUserInfo = (userData) => {
   `;
 };
 
-// const createRepoItems = (userData) => {
-//   const newRepoItem = `
-//               <li class="repo-item">
-//                 <span class="repo-title">react-deploy-test</span>
-//                 <div class="repo-stats">
-//                   <span class="repo-stars badge">stars: ${userData.stats}</span>
-//                   <span class="repo-watchers badge">watchers: 2</span>
-//                   <span class="repo-forks badge">forks: undefined</span>
-//                 </div>
-//               </li>`;
-// };
+const createRepoItems = (latestRepoArr) => {
+  let repoItems = "";
+
+  console.log(latestRepoArr);
+  if (latestRepoArr.length) {
+    latestRepoArr.forEach((item) => {
+      const repoItem = `
+        <li class="repo-item">
+          <a href="${item.url}" class="repo-title">${item.name}</a>
+            <div class="repo-stats">
+              <span class="repo-stars badge">stars: ${item.stargazers_count}</span>
+              <span class="repo-watchers badge">watchers:  ${item.watchers_count}</span>
+              <span class="repo-forks badge">forks: ${item.forks}</span>
+            </div>
+        </li>
+      `;
+      repoItems += repoItem;
+    });
+  }
+  return repoItems;
+};
