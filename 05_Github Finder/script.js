@@ -89,12 +89,6 @@ const findUserInfo = async (userId) => {
       },
     });
 
-    if (response.status === 404) {
-      console.log("not found");
-      // 이후 에러 처리 로직을 추가 -> notice 출력
-      return;
-    }
-
     return response.data;
   } catch (error) {
     console.error("Error / findUserInfo err");
@@ -102,18 +96,17 @@ const findUserInfo = async (userId) => {
 };
 
 const findUserRepoInfo = async (userId) => {
-  try {
-    const response = await fetch(
-      `https://api.github.com/users/${userId}/repos`
-    );
-    const data = await response.json();
-    data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-    const repoArr = data.splice(0, 5);
-    return repoArr;
-  } catch (error) {
-    console.error("Error fetching user repos:", error);
-    throw error;
-  }
+  const response = await octokit.request(`GET /users/${userId}/repos`, {
+    username: "USERNAME",
+    headers: {
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+  });
+
+  const repoData = response.data;
+  repoData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  const userLatestRepos = repoData.splice(0, 5);
+  return userLatestRepos;
 };
 
 // userProfileImgBox
