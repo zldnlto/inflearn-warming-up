@@ -166,6 +166,12 @@ a {
   font-size: 1.4rem;
 }
 
+.username {
+  margin: 3rem 0.5rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
 .badge {
   padding: 0.8rem 1.3rem;
   border-radius: 0.3rem;

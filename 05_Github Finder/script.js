@@ -139,6 +139,7 @@ const createUserInfo = (userData) => {
                 <li class="followers badge">Followers: <span>${userData.followers}</span></li>
                 <li class="followings badge">Following: <span>${userData.following}</span></li>
               </ul>
+              <p class="username">${userData.login}</p>
               <ul class="user-details-list">
                 <li class="user-detail company">
                   Company: <span class="company">${userData.company}</span>
