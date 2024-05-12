@@ -60,6 +60,45 @@ https://www.freecodecamp.org/news/how-to-use-environment-variables-in-vanillajs/
 
 https://stackoverflow.com/questions/64825953/how-to-access-environment-variables-with-vanilla-javascript
 
+실시간 검색 기능이어서 키 입력 발생때마다 검색이 진행되어
+아래와 같은 (\*\*\*이미지추가하기 ) 깜빡임 오류가 있었는데 두 가지 기능을 추가하여 사용감을 개선하였다.
+
+1. 스로틀링 기능
+2. 프로필이 있어야 레포지토리도 보이도록 흐름 제어
+
+```js
+const throttledHandleSearchInput = throttle(async (e) => {
+  const value = e.target.value;
+
+  if (value === "") {
+    activeNotFoundNotice("");
+    userCard.innerHTML = "";
+  }
+  if (value.length <= 2) {
+    return;
+  }
+  try {
+    const userData = await findUserInfo(value);
+
+    createUserProfileImg(userData);
+    createUserInfo(userData);
+    userCard.appendChild(userProfileSection);
+    console.log(userData.repos_url);
+
+    const latestRepoArr = await findUserRepoInfo(userData.login);
+    const latestRepoItem = createRepoItems(latestRepoArr);
+    latestRepoItems.innerHTML = latestRepoItem;
+    latestReposSection.appendChild(latestRepoItems);
+    // userCard.appendChild(latestReposSection);
+    if (userProfileSection) {
+      userCard.insertBefore(userProfileSection, latestReposSection);
+    }
+  } catch (error) {
+    console.error("ERROR");
+  }
+}, 500);
+```
+
 ### ⓒ license
 
 - [Google Fonts](https://fonts.google.com/specimen/Nanum+Gothic/about?query=nanum) : Nanum Gothic

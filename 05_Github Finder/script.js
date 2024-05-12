@@ -1,6 +1,7 @@
 import { GITHUB_URL, GITHUB_TOKEN } from "./config.js";
 import { Octokit } from "https://esm.sh/@octokit/core";
 import { RequestError } from "https://esm.sh/@octokit/request-error";
+import throttle from "./throttle.js";
 
 if (!GITHUB_TOKEN) {
   throw new Error("git hub token Error.");
@@ -71,8 +72,14 @@ const activeNotFoundNotice = (active) => {
   searchTitle.insertAdjacentHTML("afterend", NOTICE_MSG);
 };
 
-const handleSearchInput = async (e) => {
+// 스로틀링된 handleSearchInput 함수 생성
+const throttledHandleSearchInput = throttle(async (e) => {
   const value = e.target.value;
+
+  if (value === "") {
+    activeNotFoundNotice("");
+    userCard.innerHTML = "";
+  }
   if (value.length <= 2) {
     return;
   }
@@ -88,13 +95,16 @@ const handleSearchInput = async (e) => {
     const latestRepoItem = createRepoItems(latestRepoArr);
     latestRepoItems.innerHTML = latestRepoItem;
     latestReposSection.appendChild(latestRepoItems);
-    userCard.appendChild(latestReposSection);
+
+    if (userProfileSection) {
+      userCard.insertBefore(userProfileSection, latestReposSection);
+    }
   } catch (error) {
     console.error("ERROR");
   }
-};
+}, 1000);
 
-searchInput.addEventListener("keyup", handleSearchInput);
+searchInput.addEventListener("keyup", throttledHandleSearchInput);
 
 const findUserInfo = async (userId) => {
   try {
@@ -153,36 +163,36 @@ const createUserInfo = (userData) => {
   const joinDate = userData.created_at.substring(0, 10).replaceAll("-", "/");
   userInfoBox.innerHTML = `
     <ul class="user-stats-list">
-	    <li class="public-repos badge">
-		    Public Repos: <span>${userData.public_repos}</span>
-	    </li>
-	    <li class="gists badge">Public Gists: 
-		    <span>${userData.public_gists}</span>
-	    </li>
-	    <li class="followers badge">Followers: 
-		    <span>${userData.followers}</span>
-	    </li>
-	    <li class="followings badge">Following: 
-		    <span>${userData.following}</span>
-	    </li>
+      <li class="public-repos badge">
+  	    Public Repos: <span>${userData.public_repos}</span>
+      </li>
+      <li class="gists badge">Public Gists:
+  	    <span>${userData.public_gists}</span>
+      </li>
+      <li class="followers badge">Followers:
+  	    <span>${userData.followers}</span>
+      </li>
+      <li class="followings badge">Following:
+  	    <span>${userData.following}</span>
+      </li>
     </ul>
     <p class="username">${userData.login}</p>
     <ul class="user-details-list">
-	    <li class="user-detail company">
-		    Company: <span class="company">${userData.company}</span>
+      <li class="user-detail company">
+  	    Company: <span class="company">${userData.company}</span>
     	</li>
-	    <li class="user-detail">
-		    Website/Blog:
-		    <a href=${userData.blog} class="website-link">${userData.blog}</a>
+      <li class="user-detail">
+  	    Website/Blog:
+  	    <a href=${userData.blog} class="website-link">${userData.blog}</a>
     	</li>
     	<li class="user-detail location">
-		    Location:
-		    <span class="location">${userData.location}</span>
-	    </li>
-	    <li class="user-detail join-date">
-		    Member Since: 
-		    <span class="join-date">${joinDate}</span>
-	    </li>
+  	    Location:
+  	    <span class="location">${userData.location}</span>
+      </li>
+      <li class="user-detail join-date">
+  	    Member Since:
+  	    <span class="join-date">${joinDate}</span>
+      </li>
     </ul>
   `;
 };
