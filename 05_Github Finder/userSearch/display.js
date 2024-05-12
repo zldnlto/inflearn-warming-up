@@ -75,15 +75,13 @@ const latestRepoItems = document.createElement("ul");
 latestRepoItems.className = "repo-items";
 
 export function displayUserRepos(latestRepoArr) {
-  if (userProfileSection) {
-    userCard.insertBefore(userProfileSection, latestReposSection);
+  if (!userProfileSection) {
+    return;
   }
-
   let repoItems = "";
 
-  if (latestRepoArr.length) {
-    latestRepoArr.forEach((item) => {
-      const repoItem = `
+  latestRepoArr.forEach((item) => {
+    const repoItem = `
       <li class="repo-item">
         <a href="${item.url}" class="repo-title">${item.name}</a>
         <div class="repo-stats">
@@ -92,9 +90,8 @@ export function displayUserRepos(latestRepoArr) {
           <span class="repo-forks badge">forks: ${item.forks}</span>
        </div>
       </li>`;
-      repoItems += repoItem;
-    });
-  }
+    repoItems += repoItem;
+  });
 
   latestRepoItems.innerHTML = repoItems;
 

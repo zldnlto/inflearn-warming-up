@@ -1,6 +1,6 @@
 import { GITHUB_TOKEN } from "./config.js";
 import { Octokit } from "https://esm.sh/@octokit/core";
-import throttle from "./utils/throttle.js";
+import debounce from "./utils/debounce.js";
 import { findUserInfo } from "./userSearch/findUserInfo.js";
 import { findUserRepoInfo } from "./userSearch/findUserRepoInfo.js.js";
 import { activeNotFoundNotice } from "./userSearch/activeNotFoundNotice.js";
@@ -35,7 +35,7 @@ const userProfileSection = document.createElement("section");
 // 쓰로틀링 기능 도입 필요
 // 레포지토리 <a></a> 태그로 수정 후 링크 연동하기 (_target)
 
-const throttledHandleSearchInput = throttle(async (e) => {
+const debouncedHandleSearchInput = debounce(async (e) => {
   const value = e.target.value;
 
   if (value === "") {
@@ -58,4 +58,4 @@ const throttledHandleSearchInput = throttle(async (e) => {
   }
 }, 800);
 
-searchInput.addEventListener("keyup", throttledHandleSearchInput);
+searchInput.addEventListener("keyup", debouncedHandleSearchInput);

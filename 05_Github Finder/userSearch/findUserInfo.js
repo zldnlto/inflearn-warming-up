@@ -1,7 +1,6 @@
 import { Octokit } from "https://esm.sh/@octokit/core";
 import { GITHUB_TOKEN } from "../config.js";
 export const octokit = new Octokit({ auth: `${GITHUB_TOKEN}` });
-import { RequestError } from "https://esm.sh/@octokit/request-error";
 import { activeNotFoundNotice } from "./activeNotFoundNotice.js";
 
 if (!GITHUB_TOKEN) {
@@ -18,7 +17,7 @@ export const findUserInfo = async (userId) => {
     activeNotFoundNotice("");
     return response.data;
   } catch (error) {
-    console.log(error.status, "하잇");
+    console.log(error.status);
     if (error.status === 404) {
       activeNotFoundNotice("active");
     } else {
