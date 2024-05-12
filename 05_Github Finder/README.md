@@ -49,6 +49,9 @@ export const GITHUB_URL = "GITHUB URL";
 export const GITHUB_TOKEN = "GITHUB TOKEN";
 ```
 
+Octokit 에러 핸들링
+https://github.com/octokit/request-error.js/#readme
+
 ## 참고 사이트
 
 트러블 슈팅 - 환경변수

@@ -1,5 +1,6 @@
 import { GITHUB_URL, GITHUB_TOKEN } from "./config.js";
 import { Octokit } from "https://esm.sh/@octokit/core";
+import { RequestError } from "https://esm.sh/@octokit/request-error";
 
 if (!GITHUB_TOKEN) {
   throw new Error("git hub token Error.");
@@ -12,7 +13,14 @@ const main = document.getElementById("main");
 // SEARCH
 
 const searchSection = main.querySelector(".sec-search");
+const searchTitle = searchSection.querySelector(".search-title");
 const searchInput = searchSection.querySelector(".search-input");
+
+// NOTICE
+
+const noticeMsg = document.createElement("p");
+noticeMsg.className = "notice";
+console.log(noticeMsg);
 
 // RESULT
 
@@ -37,6 +45,7 @@ userInfoBox.className = "user-info";
 userProfileSection.append(userProfileImgBox, userInfoBox);
 
 // L-REPOS
+
 const latestReposSection = document.createElement("section");
 latestReposSection.className = "section latest-repos";
 
@@ -48,9 +57,19 @@ latestReposSection.appendChild(latestReposTitle);
 const latestRepoItems = document.createElement("ul");
 latestRepoItems.className = "repo-items";
 
-// 검색 기능
 // 쓰로틀링 기능 도입 필요
 // data가 여러개 불러와지는데 일단 제일 첫번째 유저만 출력하도록 기능 구현
+// 레포지토리 <a></a> 태그로 수정 후 링크 연동하기 (_target)
+
+const activeNotFoundNotice = (active) => {
+  const existingNotice = document.querySelector(".notice");
+  if (existingNotice) {
+    existingNotice.remove();
+  }
+
+  const NOTICE_MSG = `<p class="notice ${active}">User not found!</p>`;
+  searchTitle.insertAdjacentHTML("afterend", NOTICE_MSG);
+};
 
 const handleSearchInput = async (e) => {
   const value = e.target.value;
@@ -59,9 +78,7 @@ const handleSearchInput = async (e) => {
   }
   try {
     const userData = await findUserInfo(value);
-    if (!userData) {
-      return;
-    }
+
     createUserProfileImg(userData);
     createUserInfo(userData);
     userCard.appendChild(userProfileSection);
@@ -73,40 +90,52 @@ const handleSearchInput = async (e) => {
     latestReposSection.appendChild(latestRepoItems);
     userCard.appendChild(latestReposSection);
   } catch (error) {
-    console.error("ERROR", error);
+    console.error("ERROR");
   }
 };
 
 searchInput.addEventListener("keyup", handleSearchInput);
 
-//에러처리 보완 필요 if(response.status 부분)
 const findUserInfo = async (userId) => {
   try {
     const response = await octokit.request(`GET /users/${userId}`, {
+      headers: {
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    });
+    activeNotFoundNotice("");
+    return response.data;
+  } catch (error) {
+    console.log(error.status, "하잇");
+    if (error.status === 404) {
+      activeNotFoundNotice("active");
+    } else {
+      throw error;
+    }
+  }
+};
+
+const findUserRepoInfo = async (userId) => {
+  try {
+    const response = await octokit.request(`GET /users/${userId}/repos`, {
       username: "USERNAME",
       headers: {
         "X-GitHub-Api-Version": "2022-11-28",
       },
     });
 
-    return response.data;
+    const repoData = response.data;
+    repoData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    const userLatestRepos = repoData.splice(0, 5);
+    return userLatestRepos;
   } catch (error) {
-    console.error("Error / findUserInfo err");
+    console.log(error.status, error);
+    if (error.status === 404) {
+      throw new Error("Repository not found");
+    } else {
+      throw error;
+    }
   }
-};
-
-const findUserRepoInfo = async (userId) => {
-  const response = await octokit.request(`GET /users/${userId}/repos`, {
-    username: "USERNAME",
-    headers: {
-      "X-GitHub-Api-Version": "2022-11-28",
-    },
-  });
-
-  const repoData = response.data;
-  repoData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-  const userLatestRepos = repoData.splice(0, 5);
-  return userLatestRepos;
 };
 
 // userProfileImgBox
@@ -178,5 +207,3 @@ const createRepoItems = (latestRepoArr) => {
   }
   return repoItems;
 };
-
-// 레포지토리 <a></a> 태그로 수정 후 링크 연동하기 (_target)
