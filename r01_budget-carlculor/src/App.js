@@ -36,6 +36,10 @@ function App() {
     }
   };
 
+  const handleResetBtn = () => {
+    setData([]);
+  };
+
   return (
     <main className="relative flex h-screen w-screen flex-col items-center justify-center rounded border">
       <Notification
@@ -51,7 +55,9 @@ function App() {
         setCostValue={setCostValue}
         onSubmit={handleSubmitButton}
       />
-      {data.length && <List data={data} />}
+      {data.length ? (
+        <List data={data} handleResetBtn={handleResetBtn} />
+      ) : null}
     </main>
   );
 }

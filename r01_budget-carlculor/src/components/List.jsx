@@ -3,11 +3,9 @@ import { v4 as uuidv4 } from "uuid";
 import { icons } from "./svg";
 import ListItem from "./ListItem";
 
-function List({ data }) {
+function List({ handleResetBtn, data }) {
   const [sumCost, setSumCost] = useState(0);
-  const handleResetBtn = () => {
-    console.log("handleResetBtn");
-  };
+
   console.log("data", data);
 
   const calculateTotalCost = (dataArr) => {
@@ -36,7 +34,7 @@ function List({ data }) {
       </button>
       <span className="absolute -bottom-8 right-1 flex gap-2">
         <span className="mt-1">{icons.wallet}</span>
-        <span>총지출 : {sumCost}원</span>
+        {sumCost && <span>총지출 : {sumCost}원</span>}
       </span>
     </div>
   );
