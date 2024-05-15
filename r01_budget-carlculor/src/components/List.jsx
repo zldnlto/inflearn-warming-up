@@ -11,9 +11,9 @@ function List({ data }) {
   return (
     <div className="sec-style relative mt-3 w-4/5 min-w-max">
       <ul className="flex flex-col gap-2">
-        {/* {data.map((item) => (
+        {data.map((item) => (
           <ListItem name={item.name} cost={item.cost} key={uuidv4()} />
-        ))} */}
+        ))}
       </ul>
       <button
         type="button"
