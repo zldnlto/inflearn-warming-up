@@ -7,6 +7,7 @@ function Form({ nameValue, setNameValue, costValue, setCostValue, onSubmit }) {
   }, []);
 
   // useRef로 리팩터링해서 DOM 직접 조작 -> focus시에 ""으로
+
   const handleCostChange = useCallback((e) => {
     const trimedCost = e.target.value.replace(/^0+/, "");
     setCostValue(trimedCost);
@@ -36,7 +37,6 @@ function Form({ nameValue, setNameValue, costValue, setCostValue, onSubmit }) {
           <input
             type="number"
             id="cost"
-            defaultValue={0}
             className="input-style"
             value={costValue}
             onChange={handleCostChange}

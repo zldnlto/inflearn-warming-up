@@ -4,9 +4,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'NanumSquareRound': ['NanumSquareRound']
-      }
-    }
+        NanumSquareRound: ["NanumSquareRound"],
+      },
+    },
   },
   plugins: [],
 };
