@@ -1,22 +1,15 @@
 import React, { useCallback } from "react";
 import { icons } from "./svg";
 
-function Form({ setData, onSubmit }) {
+function Form({ nameValue, setNameValue, costValue, setCostValue, onSubmit }) {
   const handleNameChange = useCallback((e) => {
-    const newName = e.target.value;
-    setData((prev) => ({
-      ...prev,
-      name: newName,
-    }));
+    setNameValue(e.target.value);
   }, []);
 
   // useRef로 리팩터링해서 DOM 직접 조작 -> focus시에 ""으로
   const handleCostChange = useCallback((e) => {
-    const newCost = e.target.value.replace(/^0+/, "");
-    setData((prev) => ({
-      ...prev,
-      cost: newCost,
-    }));
+    const trimedCost = e.target.value.replace(/^0+/, "");
+    setCostValue(trimedCost);
   }, []);
 
   return (
@@ -32,6 +25,7 @@ function Form({ setData, onSubmit }) {
             id="category"
             placeholder="예) 렌트비"
             className="input-style"
+            value={nameValue}
             onChange={handleNameChange}
           />
         </div>
@@ -44,6 +38,7 @@ function Form({ setData, onSubmit }) {
             id="cost"
             defaultValue={0}
             className="input-style"
+            value={costValue}
             onChange={handleCostChange}
           />
         </div>
@@ -52,6 +47,10 @@ function Form({ setData, onSubmit }) {
         <span className="mt-0.5">{icons.submit}</span>
         <span>제출</span>
       </button>
+      {/* <button type="button" className="btn-with-icon">
+        <span className="mt-1">{icons.pen}</span>
+        <span>수정</span>
+      </button> */}
     </form>
   );
 }
