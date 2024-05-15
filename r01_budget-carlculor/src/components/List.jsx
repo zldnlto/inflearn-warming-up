@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { icons } from "./svg";
 import ListItem from "./ListItem";
 
-function List({ handleResetBtn, data }) {
+function List({ data, handleResetBtn, handleEditBtn, handleDeleteBtn }) {
   const [sumCost, setSumCost] = useState(0);
 
   console.log("data", data);
@@ -21,7 +20,13 @@ function List({ handleResetBtn, data }) {
     <div className="sec-style relative mt-3 w-4/5 min-w-max">
       <ul className="flex flex-col gap-2">
         {data.map((item) => (
-          <ListItem name={item.name} cost={item.cost} key={uuidv4()} />
+          <ListItem
+            name={item.name}
+            cost={item.cost}
+            key={item.id}
+            handleEditBtn={handleEditBtn}
+            handleDeleteBtn={handleDeleteBtn}
+          />
         ))}
       </ul>
       <button
