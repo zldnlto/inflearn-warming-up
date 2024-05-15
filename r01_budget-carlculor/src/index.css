@@ -3,32 +3,39 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'NanumSquareRound';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "NanumSquareRound";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
-    font-family: 'NanumSquareRound'
+  font-family: "NanumSquareRound";
 }
 
 /* tailwind style */
 
+@layer utilities {
+  .text-indent-\[-9999px\] {
+    text-indent: -9999px;
+  }
+}
+
 .sec-style {
-    @apply border-slate-50 p-4 shadow 
+  @apply border-slate-50 p-4 shadow;
 }
 .btn-style {
-    @apply mb-2 me-2 rounded-lg bg-green-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800
+  @apply mb-2 me-2 rounded-lg bg-green-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800;
 }
 
 .btn-with-icon {
   @apply btn-style flex gap-1.5 align-bottom;
 }
 .input-style {
-    @apply border-b px-5 py-2.5 outline-green-700
+  @apply border-b px-5 py-2.5 outline-green-700;
 }
 
 .item-style {
-    @apply flex justify-between rounded border px-4 py-2
+  @apply flex justify-between rounded border px-4 py-2;
 }
