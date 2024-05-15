@@ -7,8 +7,6 @@ import { FaWallet } from "react-icons/fa";
 export const icons = {
   pen: <FaPen />,
   submit: <FaPaperPlane />,
-  trash: <FaTrashAlt/>,
-  wallet: <FaWallet />
+  trash: <FaTrashAlt />,
+  wallet: <FaWallet />,
 };
-
-

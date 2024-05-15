@@ -12,6 +12,10 @@ function App() {
   const [noticeMessage, setNoticeMessage] = useState("");
   const [isVisible, setIsVisible] = useState(false);
 
+  const [editMode, setEditMode] = useState(false);
+
+  const [editTargetId, setEditTargetId] = useState("");
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
@@ -26,7 +30,7 @@ function App() {
 
   // 데이터는 여기서 관리!
 
-  const handleSubmitButton = (e) => {
+  const handleSubmitBtn = (e) => {
     e.preventDefault();
     if (nameValue && costValue) {
       setData((prev) => [
@@ -59,8 +63,40 @@ function App() {
     setIsVisible(true);
   };
 
-  const handleEditBtn = () => {
-    console.log("handleEditBtn");
+  const handleEditSubmitBtn = (e) => {
+    e.preventDefault();
+
+    console.log("🦭 handleEditSubmitBtn");
+    if (nameValue && costValue) {
+      const updatedData = data.map((item) => {
+        if (item.id === editTargetId) {
+          return {
+            ...item,
+            name: nameValue,
+            cost: costValue,
+          };
+        } else {
+          return item;
+        }
+      });
+      setData(updatedData);
+      setEditMode(false);
+      setNameValue("");
+      setCostValue("");
+      setNoticeMessage("✅ 아이템이 수정되었습니다.");
+      setIsVisible(true);
+    }
+  };
+
+  const handleEditBtn = (id) => {
+    // 단순 value값 붙여넣기, editmode 켜기
+    setEditTargetId(id); // handleEditSubmitBtn에 전달 위함
+    const editTarget = data.find((item) => item.id === id);
+    console.log(editTarget);
+    setNameValue(editTarget.name);
+    setCostValue(editTarget.cost);
+    setEditMode(true);
+    console.log("handleEditBtn", id);
   };
   return (
     <main className="relative flex h-screen w-screen flex-col items-center justify-center rounded border">
@@ -75,7 +111,9 @@ function App() {
         setNameValue={setNameValue}
         costValue={costValue}
         setCostValue={setCostValue}
-        onSubmit={handleSubmitButton}
+        onSubmit={handleSubmitBtn}
+        onEditSubmit={handleEditSubmitBtn}
+        editMode={editMode}
       />
       {data.length ? (
         <List
@@ -83,6 +121,7 @@ function App() {
           handleResetBtn={handleResetBtn}
           handleEditBtn={handleEditBtn}
           handleDeleteBtn={handleDeleteBtn}
+          editMode={editMode}
         />
       ) : null}
     </main>
