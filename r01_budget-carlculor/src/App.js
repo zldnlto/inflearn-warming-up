@@ -4,10 +4,14 @@ import Form from "./components/Form";
 import List from "./components/List";
 import Notification from "./components/Notification";
 
+const initialExpenseData = localStorage.getItem("expenseData")
+  ? JSON.parse(localStorage.getItem("expenseData"))
+  : [];
+
 function App() {
   const [nameValue, setNameValue] = useState("");
   const [costValue, setCostValue] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(initialExpenseData);
   const [noticeColor, setNoticeColor] = useState("green");
   const [noticeMessage, setNoticeMessage] = useState("");
   const [isVisible, setIsVisible] = useState(false);
@@ -31,11 +35,10 @@ function App() {
 
   const handleSubmitBtn = (e) => {
     e.preventDefault();
+    const newData = { id: uuidv4(), name: nameValue, cost: costValue };
     if (nameValue && costValue) {
-      setData((prev) => [
-        ...prev,
-        { id: uuidv4(), name: nameValue, cost: costValue },
-      ]);
+      setData((prev) => [...prev, newData]);
+      localStorage.setItem("expenseData", JSON.stringify([...data, newData]));
       setNameValue("");
       setCostValue("");
       popNotice("green", "💸 아이템이 추가되었습니다.");
@@ -44,6 +47,7 @@ function App() {
 
   const handleDeleteAllBtn = () => {
     setData([]);
+    localStorage.setItem("expenseData", JSON.stringify([]));
     popNotice("red", "🔥 아이템이 모두 삭제되었습니다.");
   };
 
@@ -51,6 +55,7 @@ function App() {
     console.log("🤔 handleDelete", id);
     const newData = data.filter((item) => item.id !== id);
     setData(newData);
+    localStorage.setItem("expenseData", JSON.stringify(newData));
     popNotice("red", "🔥 아이템이 삭제되었습니다.");
   };
 
@@ -71,6 +76,7 @@ function App() {
         }
       });
       setData(updatedData);
+      localStorage.setItem("expenseData", JSON.stringify(updatedData));
       setEditMode(false);
       setNameValue("");
       setCostValue("");
