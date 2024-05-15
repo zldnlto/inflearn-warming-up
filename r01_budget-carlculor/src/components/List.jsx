@@ -25,7 +25,7 @@ function List({ data, handleResetBtn, handleEditBtn, handleDeleteBtn }) {
             cost={item.cost}
             key={item.id}
             handleEditBtn={handleEditBtn}
-            handleDeleteBtn={handleDeleteBtn}
+            handleDeleteBtn={() => handleDeleteBtn(item.id)}
           />
         ))}
       </ul>

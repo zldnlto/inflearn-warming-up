@@ -1,7 +1,7 @@
 import React from "react";
 import { icons } from "./svg";
 
-function ListItem({ name, cost, id, handleEditBtn, handleDeleteBtn }) {
+function ListItem({ name, cost, handleEditBtn, handleDeleteBtn }) {
   return (
     <li className="item-style">
       <span className="w-1/3">{name}</span>
@@ -10,7 +10,7 @@ function ListItem({ name, cost, id, handleEditBtn, handleDeleteBtn }) {
         <button type="button" onClick={handleEditBtn}>
           {icons.pen}
         </button>
-        <button type="button" onClick={() => handleDeleteBtn(id)}>
+        <button type="button" onClick={handleDeleteBtn}>
           {icons.trash}
         </button>
       </div>
