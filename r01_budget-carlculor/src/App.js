@@ -35,19 +35,28 @@ function App() {
       ]);
       setNameValue("");
       setCostValue("");
-      setIsVisible(true);
+
+      setNoticeColor("green");
       setNoticeMessage("💸 아이템이 추가되었습니다.");
+      setIsVisible(true);
     }
   };
 
   const handleResetBtn = () => {
     setData([]);
+    setNoticeColor("red");
+    setNoticeMessage("🔥 아이템이 모두 삭제되었습니다.");
+    setIsVisible(true);
   };
 
   const handleDeleteBtn = (id) => {
     console.log("🤔 handleDelete", id);
     const newData = data.filter((item) => item.id !== id);
     setData(newData);
+
+    setNoticeColor("red");
+    setNoticeMessage("🔥 아이템이 삭제되었습니다.");
+    setIsVisible(true);
   };
 
   const handleEditBtn = () => {
