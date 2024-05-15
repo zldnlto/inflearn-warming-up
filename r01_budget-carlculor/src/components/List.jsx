@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { icons } from "./svg";
 import ListItem from "./ListItem";
 
-function List({ data, handleResetBtn, handleEditBtn, handleDeleteBtn }) {
+function List({
+  data,
+  handleResetBtn,
+  handleEditBtn,
+  handleDeleteBtn,
+  editMode,
+}) {
   const [sumCost, setSumCost] = useState(0);
 
   console.log("data", data);
@@ -24,23 +30,28 @@ function List({ data, handleResetBtn, handleEditBtn, handleDeleteBtn }) {
             name={item.name}
             cost={item.cost}
             key={item.id}
-            handleEditBtn={handleEditBtn}
+            handleEditBtn={() => handleEditBtn(item.id)}
             handleDeleteBtn={() => handleDeleteBtn(item.id)}
           />
         ))}
       </ul>
-      <button
-        type="button"
-        className="btn-with-icon mt-4"
-        onClick={handleResetBtn}
-      >
-        <span className="mt-0.5">{icons.trash}</span>
-        <span>목록 지우기</span>
-      </button>
-      <span className="absolute -bottom-8 right-1 flex gap-2">
-        <span className="mt-1">{icons.wallet}</span>
-        {sumCost && <span>총지출 : {sumCost}원</span>}
-      </span>
+
+      {editMode ? null : (
+        <>
+          <button
+            type="button"
+            className="btn-with-icon mt-4"
+            onClick={handleResetBtn}
+          >
+            <span className="mt-0.5">{icons.trash}</span>
+            <span>목록 지우기</span>
+          </button>
+          <span className="absolute -bottom-8 right-1 flex gap-2">
+            <span className="mt-1">{icons.wallet}</span>
+            <span>총지출 : {sumCost}원</span>
+          </span>
+        </>
+      )}
     </div>
   );
 }

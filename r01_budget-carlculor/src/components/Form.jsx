@@ -1,7 +1,15 @@
 import React, { useCallback } from "react";
 import { icons } from "./svg";
 
-function Form({ nameValue, setNameValue, costValue, setCostValue, onSubmit }) {
+function Form({
+  nameValue,
+  setNameValue,
+  costValue,
+  setCostValue,
+  onSubmit,
+  editMode,
+  onEditSubmit,
+}) {
   const handleNameChange = useCallback((e) => {
     setNameValue(e.target.value);
   }, []);
@@ -43,14 +51,21 @@ function Form({ nameValue, setNameValue, costValue, setCostValue, onSubmit }) {
           />
         </div>
       </fieldset>
-      <button type="submit" className="btn-with-icon mt-4" onClick={onSubmit}>
-        <span className="mt-0.5">{icons.submit}</span>
-        <span>제출</span>
-      </button>
-      {/* <button type="button" className="btn-with-icon">
-        <span className="mt-1">{icons.pen}</span>
-        <span>수정</span>
-      </button> */}
+      {editMode ? (
+        <button
+          type="button"
+          className="btn-with-icon mt-4"
+          onClick={onEditSubmit}
+        >
+          <span className="mt-1">{icons.pen}</span>
+          <span>수정</span>
+        </button>
+      ) : (
+        <button type="submit" className="btn-with-icon mt-4" onClick={onSubmit}>
+          <span className="mt-0.5">{icons.submit}</span>
+          <span>제출</span>
+        </button>
+      )}
     </form>
   );
 }
