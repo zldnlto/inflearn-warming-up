@@ -69,6 +69,69 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+### © license
+
+
+- 눈누 : [나눔스퀘어라운드 폰트](https://noonnu.cc/font_page/38)
+
+### tailwind Init에 참고 
+- https://developer.comento.kr/post/frontend-tailwind-css-24-04-01
 
 - https://github.com/francoismassart/eslint-plugin-tailwindcss?ref=blog.comento.info
 
+- https://techblog.woowahan.com/15903/
+
+
+
+
+### tailwind 스타일 재사용하기 - @apply 사용법
+
+- `@apply` 
+
+```css
+.my-style {
+  @apply pt-4 pb-6 text-gray-800 font-semibold;
+}
+```
+
+```html
+<div class='my-style'></div>
+```
+
+react-icons 라이브러리의 아이콘 사용
+
+사용되는 svg들이 담긴 컴포넌트 만들어서 한 객체로 관리
+
+```js
+//svg.js
+
+import { FaPen } from 'react-icons/fa';
+import { FaPaperPlane } from 'react-icons/fa';
+import { FaTrashAlt } from 'react-icons/fa';
+import { FaWallet } from 'react-icons/fa';
+
+export const icons = {
+  pen: <FaPen />,
+  submit: <FaPaperPlane />,
+  trash: <FaTrashAlt/>,
+  wallet: <FaWallet />
+};
+
+```
+
+사용
+
+```jsx
+<div className="flex gap-3">
+  <button>
+    {icons.pen}
+  </button>
+  <button>
+    {icons.trash}
+  </button>
+</div>
+
+```
+
+icon 임포트를 한 곳에서 받아서 깔끔하지만 
+div로 묶어 개별 스타일링 해야한다는 단점이 있음
