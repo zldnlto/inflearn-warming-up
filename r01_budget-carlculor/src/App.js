@@ -47,7 +47,7 @@ function App() {
   const handleDeleteBtn = (id) => {
     console.log("🤔 handleDelete", id);
     const newData = data.filter((item) => item.id !== id);
-    console.log(newData);
+    setData(newData);
   };
 
   const handleEditBtn = () => {
