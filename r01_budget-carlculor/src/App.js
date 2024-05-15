@@ -51,7 +51,7 @@ function App() {
         setCostValue={setCostValue}
         onSubmit={handleSubmitButton}
       />
-      <List data={data} />
+      {data.length && <List data={data} />}
     </main>
   );
 }
