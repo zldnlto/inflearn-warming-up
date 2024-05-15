@@ -13,7 +13,13 @@
 body {
   font-family: "NanumSquareRound";
 }
+.visible {
+  opacity: 1;
+}
 
+.hidden {
+  opacity: 0;
+}
 /* tailwind style */
 
 @layer utilities {
@@ -38,4 +44,12 @@ body {
 
 .item-style {
   @apply flex justify-between rounded border px-4 py-2;
+}
+
+.notice-green {
+  @apply absolute top-2 mb-4 rounded-lg bg-green-50 p-4 text-sm text-green-800 dark:bg-gray-800 dark:text-green-400;
+}
+
+.notice-red {
+  @apply absolute top-2 mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-gray-800 dark:text-red-400;
 }
