@@ -13,7 +13,6 @@ function App() {
   const [isVisible, setIsVisible] = useState(false);
 
   const [editMode, setEditMode] = useState(false);
-
   const [editTargetId, setEditTargetId] = useState("");
 
   useEffect(() => {
@@ -24,11 +23,11 @@ function App() {
     return () => clearTimeout(timer);
   }, [isVisible]);
 
-  useEffect(() => {
-    console.log("모니터링", costValue, nameValue, data);
-  }, [data]);
-
-  // 데이터는 여기서 관리!
+  const popNotice = (color, message) => {
+    setNoticeColor(color);
+    setNoticeMessage(message);
+    setIsVisible(true);
+  };
 
   const handleSubmitBtn = (e) => {
     e.preventDefault();
@@ -39,28 +38,20 @@ function App() {
       ]);
       setNameValue("");
       setCostValue("");
-
-      setNoticeColor("green");
-      setNoticeMessage("💸 아이템이 추가되었습니다.");
-      setIsVisible(true);
+      popNotice("green", "💸 아이템이 추가되었습니다.");
     }
   };
 
-  const handleResetBtn = () => {
+  const handleDeleteAllBtn = () => {
     setData([]);
-    setNoticeColor("red");
-    setNoticeMessage("🔥 아이템이 모두 삭제되었습니다.");
-    setIsVisible(true);
+    popNotice("red", "🔥 아이템이 모두 삭제되었습니다.");
   };
 
   const handleDeleteBtn = (id) => {
     console.log("🤔 handleDelete", id);
     const newData = data.filter((item) => item.id !== id);
     setData(newData);
-
-    setNoticeColor("red");
-    setNoticeMessage("🔥 아이템이 삭제되었습니다.");
-    setIsVisible(true);
+    popNotice("red", "🔥 아이템이 삭제되었습니다.");
   };
 
   const handleEditSubmitBtn = (e) => {
@@ -83,8 +74,7 @@ function App() {
       setEditMode(false);
       setNameValue("");
       setCostValue("");
-      setNoticeMessage("✅ 아이템이 수정되었습니다.");
-      setIsVisible(true);
+      popNotice("green", "✅ 아이템이 수정되었습니다.");
     }
   };
 
@@ -118,9 +108,9 @@ function App() {
       {data.length ? (
         <List
           data={data}
-          handleResetBtn={handleResetBtn}
           handleEditBtn={handleEditBtn}
           handleDeleteBtn={handleDeleteBtn}
+          handleDeleteAllBtn={handleDeleteAllBtn}
           editMode={editMode}
         />
       ) : null}

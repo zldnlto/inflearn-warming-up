@@ -4,9 +4,9 @@ import ListItem from "./ListItem";
 
 function List({
   data,
-  handleResetBtn,
   handleEditBtn,
   handleDeleteBtn,
+  handleDeleteAllBtn,
   editMode,
 }) {
   const [sumCost, setSumCost] = useState(0);
@@ -41,7 +41,7 @@ function List({
           <button
             type="button"
             className="btn-with-icon mt-4"
-            onClick={handleResetBtn}
+            onClick={handleDeleteAllBtn}
           >
             <span className="mt-0.5">{icons.trash}</span>
             <span>목록 지우기</span>
