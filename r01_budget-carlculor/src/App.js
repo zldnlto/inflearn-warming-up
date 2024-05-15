@@ -1,8 +1,5 @@
-import { FaWaze } from 'react-icons/fa';
-import { FaPen } from 'react-icons/fa';
-import { FaPaperPlane } from 'react-icons/fa';
-import { FaTrashAlt } from 'react-icons/fa';
-import { FaWallet } from 'react-icons/fa';
+import { icons } from "./components/svg";
+
 
 function App() {
   return (
@@ -26,14 +23,14 @@ function App() {
           </div>
         </fieldset>
         <button type="sbmit" className="btn-with-icon  mt-2">
-          <FaPaperPlane size="14" className="mt-0.5 " />
-          제출
+          <span class="mt-0.5">{icons.submit}</span>
+          <span>제출</span>
         </button>
       </form>
       <div className="sec-style relative mt-3 w-4/5 min-w-max">
         <button className="btn-with-icon">
-          <FaPen size="13" className="mt-1" />
-          수정
+          <span class="mt-1">{icons.pen}</span>
+          <span>수정</span>
         </button>
         <ul className="flex flex-col gap-2">
           <li className="item-style">
@@ -41,10 +38,10 @@ function App() {
             <span className="text-center">400</span>
             <div className="flex gap-3">
               <button>
-                <FaPen size="13" />
+                {icons.pen}
               </button>
               <button>
-                <FaTrashAlt size="13" />
+                {icons.trash}
               </button>
             </div>
           </li>
@@ -53,21 +50,21 @@ function App() {
             <span className="text-center">1200</span>
             <div className="flex gap-3">
               <button>
-                <FaPen size="13" />
+                {icons.pen}
               </button>
               <button>
-                <FaTrashAlt size="13" />
+                {icons.trash}
               </button>
             </div>
           </li>
         </ul>
         <button className="btn-with-icon mt-2">
-          <FaTrashAlt size="16" className="mt-0.5" />
-          목록 지우기
+          <span class="mt-0.5">{icons.trash}</span>
+          <span>목록 지우기</span>
         </button>
         <span className="absolute -bottom-8 right-1 flex gap-2">
-          <FaWallet className="mt-1" />
-          총지출 : 1600원
+          <span class="mt-1">{icons.wallet}</span>
+          <span>총지출 : 1600원</span>
         </span>
       </div>
     </div>
