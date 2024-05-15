@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Form from "./components/Form";
 import List from "./components/List";
 import Notification from "./components/Notification";
@@ -28,7 +29,10 @@ function App() {
   const handleSubmitButton = (e) => {
     e.preventDefault();
     if (nameValue && costValue) {
-      setData((prev) => [...prev, { name: nameValue, cost: costValue }]);
+      setData((prev) => [
+        ...prev,
+        { id: uuidv4(), name: nameValue, cost: costValue },
+      ]);
       setNameValue("");
       setCostValue("");
       setIsVisible(true);
@@ -40,6 +44,15 @@ function App() {
     setData([]);
   };
 
+  const handleDeleteBtn = (id) => {
+    console.log("🤔 handleDelete", id);
+    const newData = data.filter((item) => item.id !== id);
+    console.log(newData);
+  };
+
+  const handleEditBtn = () => {
+    console.log("handleEditBtn");
+  };
   return (
     <main className="relative flex h-screen w-screen flex-col items-center justify-center rounded border">
       <Notification
@@ -56,7 +69,12 @@ function App() {
         onSubmit={handleSubmitButton}
       />
       {data.length ? (
-        <List data={data} handleResetBtn={handleResetBtn} />
+        <List
+          data={data}
+          handleResetBtn={handleResetBtn}
+          handleEditBtn={handleEditBtn}
+          handleDeleteBtn={handleDeleteBtn}
+        />
       ) : null}
     </main>
   );
