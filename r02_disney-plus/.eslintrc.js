@@ -8,7 +8,7 @@ module.exports = {
   ],
   plugins: ["prettier"],
   rules: {
-    "prettier/prettier": "error",
+    "prettier/prettier": ["error", { singleQuote: false }],
     "no-unused-vars": "off",
     "import/prefer-default-export": "off",
     "react/prop-types": "off",
