@@ -2,15 +2,15 @@
 
 - TMDB API
 - Google Login API
-
-axios 사용 예정
+  @react-oauth/google
+  axios 사용 예정
 
 ## 기능 TodoList
 
 ### 로그인
 
 [ ] 로그아웃 상태일 경우 랜딩 페이지  
-[ ] 구글 로그인 기능  
+[x] 구글 로그인 기능  
 [ ] 로그아웃 기능  
 [ ] 구글 로그인을 진행해야 메인 페이지가 보인다. 로그인 상태일 경우 랜딩 페이지가 보이지 않는다
 (private router?)
@@ -32,3 +32,6 @@ axios 사용 예정
 
 - `<createBrowserRoute>`
   https://velog.io/@adultlee/createBrowserRouter%EB%A5%BC-%ED%86%B5%ED%95%9C-Router%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80
+
+assets 디즈니 로고 이미지 출처  
+https://press.disneyplus.com/about/logos
