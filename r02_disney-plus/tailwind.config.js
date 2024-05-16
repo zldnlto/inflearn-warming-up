@@ -6,6 +6,11 @@ module.exports = {
       fontFamily: {
         NanumSquareNeo: "NanumSquareNeo-Variable",
       },
+      colors: {
+        transparent: "transparent",
+        deepBlue: "#090a13",
+        lightBlue: "#0163e5",
+      },
     },
   },
   plugins: [],
