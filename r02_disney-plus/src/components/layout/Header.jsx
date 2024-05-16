@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import disneyLogo from "../../assets/disney_logo_march_2024.png";
 import LoginBtn from "../Login/LoginBtn";
 import { useRecoilValue } from "recoil";
@@ -8,6 +8,11 @@ function Header() {
   const isLoggedIn = useRecoilValue(isLoggedInState);
   const userInfo = useRecoilValue(userInfoState);
 
+  useEffect(() => {
+    console.log(isLoggedIn, "로그인?");
+  }, [isLoggedIn]);
+
+  console.log("userInfo", userInfo);
   return (
     <>
       <header className="relative left-0 right-0 top-0 flex h-14 justify-between bg-deepBlue px-4 text-xl text-white">
