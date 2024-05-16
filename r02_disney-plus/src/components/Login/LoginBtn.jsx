@@ -1,7 +1,12 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import { useSetRecoilState } from "recoil";
+import { isLoggedInState, userInfoState } from "../../atoms/auth";
 
 const LoginBtn = () => {
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+  const setUserInfo = useSetRecoilState(userInfoState);
+
   const googleSocialLogin = useGoogleLogin({
     onSuccess: async (res) => {
       try {
@@ -13,10 +18,13 @@ const LoginBtn = () => {
             },
           }
         );
+        const userInfo = userInfoRes.data;
+        console.log(userInfo);
 
-        const profilePicture = userInfoRes.data.picture;
-        localStorage.setItem("profilePicture", profilePicture);
-        console.log(userInfoRes);
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+        setIsLoggedIn(true);
+        setUserInfo(userInfo);
       } catch (error) {
         console.error("Error:", error);
       }
