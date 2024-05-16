@@ -1,12 +1,15 @@
 import React from "react";
+import disneyLogo from "../../assets/disney_logo_march_2024.png";
+import LoginBtn from "../Login/LoginBtn";
 
 function Header() {
   return (
     <>
-      <header className="relative left-0 right-0 top-0 flex justify-between bg-slate-200">
-        <h1>디즈니플러스로고</h1>
-        {/* 로그인 상태일경우 프로필, 아니면 Login버튼  */}
-        <div>로그인정보</div>
+      <header className="bg-deepBlue relative left-0 right-0 top-0 flex h-14 justify-between px-4 text-xl text-white">
+        <h1>
+          <img src={disneyLogo} alt="디즈니 플러스 로고" className="h-full" />
+        </h1>
+        <LoginBtn />
       </header>
     </>
   );

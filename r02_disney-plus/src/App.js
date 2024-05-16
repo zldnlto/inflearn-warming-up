@@ -5,7 +5,7 @@ function App() {
   //레이아웃이 여기
   //Login 구분 여기
   return (
-    <div className="text-2xl">
+    <div className="">
       <Header />
       <main>
         <Outlet />
