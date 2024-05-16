@@ -1,7 +1,7 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { PATH } from "../constants/path";
-import App from "../App";
+import App from "../App.js";
 import NotFound from "../pages/NotFound";
 import Search from "../pages/Search";
 import Login from "../pages/Login";
@@ -11,7 +11,7 @@ function AppRouter() {
   const router = createBrowserRouter([
     {
       path: PATH.ROOT,
-      elememt: <App />,
+      element: <App />,
       errorElement: <NotFound />,
       children: [
         {
