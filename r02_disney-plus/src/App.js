@@ -9,12 +9,10 @@ function App() {
   //Login 구분 여기
   return (
     <LoggedIn>
-      <div className="">
-        <Header />
-        <main>
-          <Outlet />
-        </main>
-      </div>
+      <Header />
+      <main>
+        <Outlet />
+      </main>
     </LoggedIn>
   );
 }

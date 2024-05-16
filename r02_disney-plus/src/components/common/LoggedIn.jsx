@@ -8,11 +8,10 @@ function LoggedIn({ children }) {
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
-    if (!localStorage.getItem("userInfo")) {
+    if (!localStorage.getItem("USER_INFO")) {
       console.log("로그인되어 있지 않음, 로그인 페이지로 이동.");
       setIsLoggedIn(false);
       navigate("/login");
-      return;
     } else {
       setIsLoggedIn(true);
       navigate("/");

@@ -21,7 +21,7 @@ const LoginBtn = () => {
         const userInfo = userInfoRes.data;
         console.log(userInfo);
 
-        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+        localStorage.setItem("USER_INFO", JSON.stringify(userInfo));
 
         setIsLoggedIn(true);
         setUserInfo(userInfo);
