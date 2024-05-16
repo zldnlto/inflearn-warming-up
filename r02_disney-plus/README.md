@@ -29,3 +29,6 @@ axios 사용 예정
 ### license ©
 
 폰트 : 눈누 - 나눔스퀘어 네오
+
+- `<createBrowserRoute>`
+  https://velog.io/@adultlee/createBrowserRouter%EB%A5%BC-%ED%86%B5%ED%95%9C-Router%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80
