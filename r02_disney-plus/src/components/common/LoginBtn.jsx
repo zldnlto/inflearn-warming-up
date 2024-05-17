@@ -2,6 +2,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useSetRecoilState } from "recoil";
 import { isLoggedInState, userInfoState } from "../../atoms/auth";
+import Button from "./Button";
 
 const LoginBtn = () => {
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
@@ -34,11 +35,7 @@ const LoginBtn = () => {
     },
   });
 
-  return (
-    <div>
-      <button onClick={googleSocialLogin}>Google Login</button>
-    </div>
-  );
+  return <Button onClick={googleSocialLogin}>LOGIN</Button>;
 };
 
 export default LoginBtn;

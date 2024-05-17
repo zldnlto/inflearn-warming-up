@@ -1,22 +1,22 @@
+// LoggedIn.js
 import React, { useLayoutEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { isLoggedInState } from "../../atoms/auth";
+import { isLoggedInState, userInfoState } from "../../atoms/auth";
 
 function LoggedIn({ children }) {
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
-  const navigate = useNavigate();
+  const setUserInfo = useSetRecoilState(userInfoState);
 
   useLayoutEffect(() => {
-    if (!localStorage.getItem("USER_INFO")) {
-      console.log("로그인되어 있지 않음, 로그인 페이지로 이동.");
-      setIsLoggedIn(false);
-      navigate("/login");
-    } else {
+    const userInfo = localStorage.getItem("USER_INFO");
+    if (userInfo) {
       setIsLoggedIn(true);
-      navigate("/");
+      setUserInfo(JSON.parse(userInfo));
+    } else {
+      setIsLoggedIn(false);
     }
-  }, [setIsLoggedIn]);
+  }, [setIsLoggedIn, setUserInfo]);
+
   return <>{children}</>;
 }
 
