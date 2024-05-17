@@ -31,6 +31,14 @@ const movieAPI = {
       page: 1,
     },
   },
+  actionMovies: {
+    label: "Action Movies",
+    endPoint: "/discover/movie",
+    params: {
+      api_key: key,
+      with_genres: "99",
+    },
+  },
 };
 
 function useMovieData(type) {
@@ -75,6 +83,18 @@ function useMovieData(type) {
             movieAPI.topRated.params
           );
           console.log("상위 랭킹", res);
+          setData(res.results);
+        } catch (error) {
+          console.error("Error fetching trending movies:", error);
+        }
+        break;
+      case "actionMovies":
+        try {
+          const res = await getTMDBData(
+            movieAPI.actionMovies.endPoint,
+            movieAPI.actionMovies.params
+          );
+          console.log("액션영화", res);
           setData(res.results);
         } catch (error) {
           console.error("Error fetching trending movies:", error);
