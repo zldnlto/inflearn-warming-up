@@ -35,3 +35,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.inset-shadow {
+  box-shadow: 350px 10px 100px -12px rgba(0, 0, 0, 0.7) inset;
+}
+
+.text-overflow-banner {
+  text-overflow: ellipsis;
+  word-break: keep-all;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
