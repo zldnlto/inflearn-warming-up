@@ -59,6 +59,11 @@ const trendingData = useMovieData("trendingNow");
 const nowPlayingData = useMovieData("nowPlaying");
 ```
 
+재사용 -> hook 만들어보자 생각을 했는데
+문제는 하위 컴포넌트에서 불러오기가 안 되어서 리팩터링 할 예정 (ㅠㅠ)
+
+Main페이지 컴포넌트에 useMovieData를 이용해 데이터를 불러오고 내려주고 있지만 MovieList로 데이터 불러오기를 위임하는 것이 괜찮은 설계같다.
+
 ### license ©
 
 API : TMDB API
