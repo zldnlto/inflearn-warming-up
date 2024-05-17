@@ -3,14 +3,10 @@ import React from "react";
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
 
 function Banner({ data }) {
-  console.log(data, "banner");
-
   const imageSrc = `${IMG_BASE_URL}${data.backdrop_path}`;
 
-  console.log(imageSrc);
-
   return (
-    <section className="h-4/5">
+    <section className="h-4/6">
       <div className="relative h-full">
         <article
           className="box-shadow relative flex h-full bg-cover text-white"
