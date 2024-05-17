@@ -1,4 +1,5 @@
 import React from "react";
+import CompanyList from "./CompanyList";
 
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
 
@@ -6,8 +7,8 @@ function Banner({ data }) {
   const imageSrc = `${IMG_BASE_URL}${data.backdrop_path}`;
 
   return (
-    <section className="h-4/6">
-      <div className="relative h-full">
+    <section className="h-screen">
+      <div className="relative h-4/5">
         <article
           className="box-shadow relative flex h-full bg-cover text-white"
           style={{ backgroundImage: `url(${imageSrc})` }}
@@ -27,6 +28,7 @@ function Banner({ data }) {
         </article>
         <div className="inset-shadow absolute inset-0"></div>
       </div>
+      <CompanyList />
     </section>
   );
 }

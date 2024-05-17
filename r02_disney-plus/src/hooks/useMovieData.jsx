@@ -1,45 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { MOVIE_ENDPOINTS } from "../constants/api";
 
 const key = process.env.REACT_APP_TMDB_KEY;
-
-const movieAPI = {
-  nowPlaying: {
-    label: "Now playing",
-    endPoint: "/movie/now_playing",
-    params: {
-      api_key: key,
-      language: "ko-KR",
-      page: 1,
-    },
-  },
-  trendingNow: {
-    label: "Trending now",
-    endPoint: "/movie/popular",
-    params: {
-      api_key: key,
-      language: "ko-KR",
-      page: 1,
-    },
-  },
-  topRated: {
-    label: "Top rated",
-    endPoint: "/movie/top_rated",
-    params: {
-      api_key: key,
-      language: "ko-KR",
-      page: 1,
-    },
-  },
-  actionMovies: {
-    label: "Action Movies",
-    endPoint: "/discover/movie",
-    params: {
-      api_key: key,
-      with_genres: "99",
-    },
-  },
-};
 
 function useMovieData(type) {
   const [data, setData] = useState([]);
@@ -55,8 +18,8 @@ function useMovieData(type) {
       case "trendingNow":
         try {
           const res = await getTMDBData(
-            movieAPI.trendingNow.endPoint,
-            movieAPI.trendingNow.params
+            MOVIE_ENDPOINTS.trendingNow.endPoint,
+            MOVIE_ENDPOINTS.trendingNow.params
           );
           console.log("지금 트렌드 영화", res);
           setData(res.results);
@@ -67,8 +30,8 @@ function useMovieData(type) {
       case "nowPlaying":
         try {
           const res = await getTMDBData(
-            movieAPI.nowPlaying.endPoint,
-            movieAPI.nowPlaying.params
+            MOVIE_ENDPOINTS.nowPlaying.endPoint,
+            MOVIE_ENDPOINTS.nowPlaying.params
           );
           console.log("현재 상영작", res);
           setData(res.results);
@@ -79,8 +42,8 @@ function useMovieData(type) {
       case "topRated":
         try {
           const res = await getTMDBData(
-            movieAPI.topRated.endPoint,
-            movieAPI.topRated.params
+            MOVIE_ENDPOINTS.topRated.endPoint,
+            MOVIE_ENDPOINTS.topRated.params
           );
           console.log("상위 랭킹", res);
           setData(res.results);
@@ -91,8 +54,8 @@ function useMovieData(type) {
       case "actionMovies":
         try {
           const res = await getTMDBData(
-            movieAPI.actionMovies.endPoint,
-            movieAPI.actionMovies.params
+            MOVIE_ENDPOINTS.actionMovies.endPoint,
+            MOVIE_ENDPOINTS.actionMovies.params
           );
           console.log("액션영화", res);
           setData(res.results);

@@ -1,11 +1,10 @@
 import React from "react";
 import { COMPANY_LOGO } from "../../constants/companyLogo";
-
-const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
+import { IMG_BASE_URL } from "../../constants/api";
 
 function CompanyList() {
   return (
-    <div className="my-10">
+    <section className="mt-5">
       <ul className="flex justify-between gap-4">
         {COMPANY_LOGO.map((v) => (
           <li className="h-30 flex-shrink-0 basis-1/6 rounded border border-lightBlue bg-white p-4">
@@ -19,7 +18,7 @@ function CompanyList() {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }
 
