@@ -14,7 +14,9 @@ function Main() {
 
   return (
     <Suspense fallback={<div>Loading</div>}>
-      <div className="px-8">{trendingNow && <Banner data={trendingNow} />}</div>
+      <div className="h-screen px-8">
+        {trendingNow && <Banner data={trendingNow} />}
+      </div>
     </Suspense>
   );
 }
