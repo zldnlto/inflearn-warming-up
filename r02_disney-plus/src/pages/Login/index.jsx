@@ -1,5 +1,4 @@
 import React from "react";
-import LoginBtn from "../../components/common/LoginBtn";
 import Button from "../../components/common/Button";
 
 function Login() {

@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import Button from "./Button";
+import { isLoggedInState } from "../../atoms/auth";
 
 function Profile({ src }) {
-  const navigate = useNavigate();
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   const [isHovered, setIsHovered] = useState(false);
+
   const handleLogOutBtn = () => {
     console.log("logut");
+    console.log(localStorage.getItem("USER_INFO"));
     localStorage.removeItem("USER_INFO");
-    navigate("/login");
+    setIsLoggedIn(false);
   };
   return (
     <>
