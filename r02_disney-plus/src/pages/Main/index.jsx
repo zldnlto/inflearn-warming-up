@@ -9,13 +9,10 @@ const key = process.env.REACT_APP_TMDB_KEY;
 
 function Main() {
   const nowPlayingData = useMovieData("nowPlaying");
-  const trendingData = useMovieData("trendingNow");
-  const topRatedData = useMovieData("topRated");
-
-  console.log(trendingData, "트렌드");
-  console.log(nowPlayingData, "데이터 확인");
   const nowPlayingItem = getRandomElement(nowPlayingData);
 
+  const trendingData = useMovieData("trendingNow");
+  const topRatedData = useMovieData("topRated");
   const actionMovieData = useMovieData("actionMovies");
 
   return (

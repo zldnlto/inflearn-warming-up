@@ -21,7 +21,7 @@ function Profile({ src }) {
         className="h-10 w-10 cursor-pointer"
       >
         <img src={src} alt="유저 프로필 이미지" className="rounded-full" />
-        <div className="-ml-16 bg-transparent py-2">
+        <div className="relative z-50 -ml-16 bg-transparent py-2">
           {isHovered && <Button onClick={handleLogOutBtn}>LOGOUT</Button>}
         </div>
       </div>
