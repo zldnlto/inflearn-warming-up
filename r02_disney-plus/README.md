@@ -3,7 +3,7 @@
 - TMDB API
 - Google Login API
   @react-oauth/google
-  axios 사용 예정
+  axios 사용
 
 ## 기능 TodoList
 
@@ -11,7 +11,7 @@
 
 [x] 로그아웃 상태일 경우 로그인 페이지  
 [x] 구글 로그인 기능.구글 로그인을 진행해야 메인 페이지가 보임
-[ ] 로그아웃 기능
+[x] 로그아웃 기능
 
 ### 데이터 불러오기
 
@@ -50,7 +50,18 @@ export default Header;
 상단 헤더에 isLoggedIn의 상태에 따라 로그인 상태면 유저의 프로필 사진, 아니면 로그인 버튼을 그리는 로직을 짰는데
 페이지에서 컴포넌트를 넘겨주는게 좀 더 안정적일것같아서 코드를 수정함
 
+#### useMovieData
+
+아래와 같이 type을 넘겨주어 데이터 사용 가능
+
+```js
+const trendingData = useMovieData("trendingNow");
+const nowPlayingData = useMovieData("nowPlaying");
+```
+
 ### license ©
+
+API : TMDB API
 
 폰트 : 눈누 - 나눔스퀘어 네오
 
