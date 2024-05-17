@@ -1,6 +1,4 @@
 import React from "react";
-import Button from "../common/Button";
-import axios from "axios";
 
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
 
@@ -12,10 +10,10 @@ function Banner({ data }) {
   console.log(imageSrc);
 
   return (
-    <section className="h-screen">
+    <section className="h-4/5">
       <div className="relative h-full">
         <article
-          className="box-shadow relative flex h-4/5 bg-cover text-white"
+          className="box-shadow relative flex h-full bg-cover text-white"
           style={{ backgroundImage: `url(${imageSrc})` }}
         >
           <div className="z-10 flex flex-col justify-center gap-8 px-8">
