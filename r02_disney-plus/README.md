@@ -9,11 +9,9 @@
 
 ### 로그인
 
-[ ] 로그아웃 상태일 경우 랜딩 페이지  
-[x] 구글 로그인 기능  
-[ ] 로그아웃 기능  
-[ ] 구글 로그인을 진행해야 메인 페이지가 보인다. 로그인 상태일 경우 랜딩 페이지가 보이지 않는다
-(private router?)
+[x] 로그아웃 상태일 경우 로그인 페이지  
+[x] 구글 로그인 기능.구글 로그인을 진행해야 메인 페이지가 보임
+[ ] 로그아웃 기능
 
 ### 데이터 불러오기
 
@@ -25,6 +23,32 @@
 ### 서치 기능
 
 [ ] 실시간 검색 기능 + debounce
+
+### note
+
+```jsx
+function Header() {
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+  const userInfo = useRecoilValue(userInfoState);
+
+  console.log("userInfo", userInfo);
+  return (
+    <>
+      <header>
+        <h1>
+          <img src={disneyLogo} alt="디즈니 플러스 로고" className="h-full" />
+        </h1>
+        {isLoggedIn ? <Profile src={userInfo.picture} /> : <LoginBtn />}
+      </header>
+    </>
+  );
+}
+
+export default Header;
+```
+
+상단 헤더에 isLoggedIn의 상태에 따라 로그인 상태면 유저의 프로필 사진, 아니면 로그인 버튼을 그리는 로직을 짰는데
+페이지에서 컴포넌트를 넘겨주는게 좀 더 안정적일것같아서 코드를 수정함
 
 ### license ©
 
