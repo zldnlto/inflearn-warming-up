@@ -4,10 +4,14 @@ import { searchValueState } from "../../atoms/search";
 import { instance } from "../../api/axios";
 import { IMG_BASE_URL } from "../../constants/api";
 import MovieItem from "../main/MovieItem";
+import Modal from "../common/Modal/Modal";
+import ModalContents from "../common/Modal/ModalContents";
 
 function SearchView() {
   const [searchResults, setSearchResults] = useState([]);
   const searchValue = useRecoilValue(searchValueState);
+  const [modal, setModal] = useState(false);
+  const [modalData, setModalData] = useState({});
 
   const fetchSearchMovie = async (term) => {
     console.log("🚀  ~ searchTerm:", term);
@@ -37,21 +41,26 @@ function SearchView() {
   const handleMovieItem = (id) => {
     console.log(id);
     console.log(searchResults);
-    // const clickedMovie = movies.find((movie) => movie.id === id);
-    // setModal(true);
-    // setModalData(clickedMovie);
+    const clickedItem = searchResults.find((movie) => movie.id === id);
+    setModal(true);
+    setModalData(clickedItem);
   };
 
   return (
-    <ul className="flex min-h-screen flex-wrap justify-between gap-3 bg-deepBlue p-6">
-      {searchResults.map((item) => (
-        <MovieItem
-          id={item.id}
-          src={item.backdrop_path}
-          onClick={handleMovieItem}
-        />
-      ))}
-    </ul>
+    <>
+      <ul className="flex min-h-screen flex-wrap justify-between gap-3 bg-deepBlue p-6">
+        {searchResults.map((item) => (
+          <MovieItem
+            id={item.id}
+            src={item.backdrop_path}
+            onClick={handleMovieItem}
+          />
+        ))}
+      </ul>
+      <Modal openModal={modal} closeModal={() => setModal(false)}>
+        <ModalContents data={modalData} />
+      </Modal>
+    </>
   );
 }
 
