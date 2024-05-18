@@ -63,6 +63,30 @@ function useMovieData(type) {
           console.error("Error fetching trending movies:", error);
         }
         break;
+      case "comedyMovies":
+        try {
+          const res = await getTMDBData(
+            MOVIE_ENDPOINTS.comedyMovies.endPoint,
+            MOVIE_ENDPOINTS.comedyMovies.params
+          );
+          console.log("코미디 영화", res);
+          setData(res.results);
+        } catch (error) {
+          console.error("Error fetching trending movies:", error);
+        }
+        break;
+      case "horrorMovies":
+        try {
+          const res = await getTMDBData(
+            MOVIE_ENDPOINTS.horrorMovies.endPoint,
+            MOVIE_ENDPOINTS.horrorMovies.params
+          );
+          console.log("호러 영화", res);
+          setData(res.results);
+        } catch (error) {
+          console.error("Error fetching trending movies:", error);
+        }
+        break;
       default:
         console.log("잘못된 타입입니다.");
     }

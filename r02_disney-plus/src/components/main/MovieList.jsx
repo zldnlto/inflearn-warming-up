@@ -1,7 +1,13 @@
 import React from "react";
 import MovieCategory from "./MovieCategory";
 
-function MovieList({ trendingMovies, topRatedMovies, actionMovies }) {
+function MovieList({
+  trendingMovies,
+  topRatedMovies,
+  actionMovies,
+  comedyMovies,
+  horrorMovies,
+}) {
   const settings = {
     dots: false,
     infinite: true,
@@ -12,10 +18,12 @@ function MovieList({ trendingMovies, topRatedMovies, actionMovies }) {
   };
 
   return (
-    <section className="mt-32 flex flex-col gap-6 px-12">
+    <section className="mt-32 flex flex-col gap-6 px-12 pb-28">
       <MovieCategory title="Trending Movies" movies={trendingMovies} />
       <MovieCategory title="Top Rated Movies" movies={topRatedMovies} />
       <MovieCategory title="Action Movies" movies={actionMovies} />
+      <MovieCategory title="Comedy Movies" movies={comedyMovies} />
+      <MovieCategory title="Horror Movies" movies={horrorMovies} />
     </section>
   );
 }
