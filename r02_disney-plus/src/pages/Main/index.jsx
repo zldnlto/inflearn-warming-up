@@ -4,6 +4,7 @@ import useMovieData from "../../hooks/useMovieData";
 import getRandomElement from "../../utils/getRandomElement";
 import CompanyList from "../../components/main/CompanyList";
 import MovieList from "../../components/main/MovieList";
+import Modal from "../../components/common/Modal/Modal";
 
 const key = process.env.REACT_APP_TMDB_KEY;
 
