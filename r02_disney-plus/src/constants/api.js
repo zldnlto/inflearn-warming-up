@@ -37,7 +37,23 @@ export const MOVIE_ENDPOINTS = {
     endPoint: "/discover/movie",
     params: {
       api_key: key,
-      with_genres: "99",
+      with_genres: "28",
+    },
+  },
+  comedyMovies: {
+    label: "Comedy Movies",
+    endPoint: "/discover/movie",
+    params: {
+      api_key: key,
+      with_genres: "35",
+    },
+  },
+  horrorMovies: {
+    label: "Horror Movies",
+    endPoint: "/discover/movie",
+    params: {
+      api_key: key,
+      with_genres: "27",
     },
   },
 };
