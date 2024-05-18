@@ -5,10 +5,13 @@ import useMovieData from "../../hooks/useMovieData";
 import getRandomElement from "../../utils/getRandomElement";
 import MovieList from "../../components/main/MovieList";
 import SearchView from "../../components/search/SearchView";
+import { searchValueState } from "../../atoms/search";
 
 const key = process.env.REACT_APP_TMDB_KEY;
 
 function Main() {
+  const searchValue = useRecoilValue(searchValueState);
+
   const nowPlayingData = useMovieData("nowPlaying");
   const nowPlayingItem = getRandomElement(nowPlayingData);
 
@@ -20,17 +23,20 @@ function Main() {
 
   return (
     <Suspense fallback={<div>Loading</div>}>
-      <SearchView />
-      <div className="bg-deepBlue px-8">
-        {nowPlayingItem && <Banner data={nowPlayingItem} />}
-        <MovieList
-          trendingMovies={trendingData}
-          topRatedMovies={topRatedData}
-          actionMovies={actionMovieData}
-          comedyMovies={comedyMovieData}
-          horrorMovies={horrorMovieData}
-        />
-      </div>
+      {searchValue ? (
+        <SearchView />
+      ) : (
+        <div className="bg-deepBlue px-8">
+          {nowPlayingItem && <Banner data={nowPlayingItem} />}
+          <MovieList
+            trendingMovies={trendingData}
+            topRatedMovies={topRatedData}
+            actionMovies={actionMovieData}
+            comedyMovies={comedyMovieData}
+            horrorMovies={horrorMovieData}
+          />
+        </div>
+      )}
     </Suspense>
   );
 }
