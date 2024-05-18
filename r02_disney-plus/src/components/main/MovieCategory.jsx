@@ -18,10 +18,9 @@ function MovieCategory({ title, movies }) {
 
   const handleMovieItem = (id) => {
     console.log(title, id);
-    const temp = movies.find((movie) => movie.id === id);
-    console.log("찾아짐?ok", temp);
+    const clickedMovie = movies.find((movie) => movie.id === id);
     setModal(true);
-    setModalData(temp);
+    setModalData(clickedMovie);
   };
 
   return (

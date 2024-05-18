@@ -1,8 +1,10 @@
 import React, { useState, useEffect, Suspense } from "react";
+import { useRecoilValue } from "recoil";
 import Banner from "../../components/main/Banner";
 import useMovieData from "../../hooks/useMovieData";
 import getRandomElement from "../../utils/getRandomElement";
 import MovieList from "../../components/main/MovieList";
+import SearchView from "../../components/search/SearchView";
 
 const key = process.env.REACT_APP_TMDB_KEY;
 
@@ -18,6 +20,7 @@ function Main() {
 
   return (
     <Suspense fallback={<div>Loading</div>}>
+      <SearchView />
       <div className="bg-deepBlue px-8">
         {nowPlayingItem && <Banner data={nowPlayingItem} />}
         <MovieList

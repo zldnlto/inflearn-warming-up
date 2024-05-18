@@ -4,7 +4,8 @@ import LoginBtn from "../common/LoginBtn";
 import { useRecoilValue } from "recoil";
 import { isLoggedInState, userInfoState } from "../../atoms/auth";
 import Profile from "../common/Profile";
-import SearchBar from "../common/SearchBar";
+import SearchBar from "../search/SearchBar";
+
 function Header() {
   const isLoggedIn = useRecoilValue(isLoggedInState);
   const userInfo = useRecoilValue(userInfoState);
