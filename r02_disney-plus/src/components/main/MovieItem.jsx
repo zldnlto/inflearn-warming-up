@@ -7,11 +7,15 @@ function MovieItem({ id, src, onClick }) {
       className="w-52 flex-col px-0 transition-transform duration-200 hover:scale-110 "
       onClick={() => onClick(id)}
     >
-      <img
-        src={`${IMAGE_URL}${src}`}
-        alt=""
-        className="h-full w-full transition-transform duration-200 "
-      />
+      {src ? (
+        <img
+          src={`${IMAGE_URL}${src}`}
+          alt=""
+          className="h-full w-full object-contain transition-transform duration-200"
+        />
+      ) : (
+        <div className="flex justify-center text-white">이미지 없음</div>
+      )}
       {/* <span className="truncate text-white">{title}</span> */}
     </li>
   );
