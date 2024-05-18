@@ -12,9 +12,18 @@ function Modal({ openModal, closeModal, children }) {
   }, [openModal]);
 
   return (
-    <dialog ref={ref} onCancel={closeModal}>
+    <dialog
+      ref={ref}
+      onCancel={closeModal}
+      className="scrollbar-hide  h-screen w-6/12"
+    >
+      <button
+        onClick={closeModal}
+        className="absolute right-2 top-2 font-bold text-white"
+      >
+        Close
+      </button>
       {children}
-      <button onClick={closeModal}>Close</button>
     </dialog>
   );
 }
